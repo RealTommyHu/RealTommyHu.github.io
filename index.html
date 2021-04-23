@@ -314,7 +314,7 @@
                   <i class="far fa-calendar-check"></i>
                 </span>
                 <span class="post-meta-item-text">Edited on</span>
-                <time title="Modified: 2021-04-23 23:01:10" itemprop="dateModified" datetime="2021-04-23T23:01:10+08:00">2021-04-23</time>
+                <time title="Modified: 2021-04-23 23:17:32" itemprop="dateModified" datetime="2021-04-23T23:17:32+08:00">2021-04-23</time>
               </span>
             <span class="post-meta-item">
               <span class="post-meta-item-icon">
@@ -390,7 +390,7 @@
 <li>cd到博客根目录下 查看_config.yml文件 查找 post_asset_folder 字段确定post_asset_folder 设置为true -&gt; post_asset_folder:true 设置 post_asset_folder 参数后，在建立文件时，Hexo 会自动建立一个与文章同名的文件夹，您可以把与该文章相关的所有资源都放到此文件夹内，这样就可以更方便的使用资源。</li>
 <li>到博客的根目录下执行 npm install hexo-renderer-marked –save 命令安装插件hexo-renderer-marked，并配置_config.yml：<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">post_asset_folder: true</span><br><span class="line">marked:</span><br><span class="line">  prependRoot: true</span><br><span class="line">  postAsset: true</span><br></pre></td></tr></table></figure></li>
 <li>然后创建一文章 hexo new “test” 然后查看博客的 ../source/_posts 目录下的文件，会看到存在一个test 文件夹 和 test.md 文件。</li>
-<li>图片资源放在文章同名文件夹下，在Markdown文章中引用带后缀的图片名称即可：<img src="/image.jpg">。hexo-renderer-marked插件会自动帮我们处理路径前缀。通过这种方式，图片将会同时出现在文章和主页以及归档页中。</li>
+<li>图片资源放在文章同名文件夹下，在Markdown文章中引用带后缀的图片名称即可：<code>![](image.jpg)</code>。hexo-renderer-marked插件会自动帮我们处理路径前缀。通过这种方式，图片将会同时出现在文章和主页以及归档页中。</li>
 <li><code>hexo g</code>、<code>hexo d</code> 将本地博客推送到远程，即可看到文章中的图片。</li>
 </ol>
 <h1 id="hexo使用教程"><a href="#hexo使用教程" class="headerlink" title="hexo使用教程"></a>hexo使用教程</h1><h2 id="文章发布"><a href="#文章发布" class="headerlink" title="文章发布"></a>文章发布</h2><ul>
@@ -410,6 +410,16 @@
 <p>分类同理：<code>hexo new page categories</code>，打开categories/index.md，改为：</p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">title: 分类</span><br><span class="line">date: 日期</span><br><span class="line">type: &quot;categories&quot;</span><br><span class="line">comments: false</span><br></pre></td></tr></table></figure>
 
+<h2 id="设置首页只显示部分摘要而不是全文"><a href="#设置首页只显示部分摘要而不是全文" class="headerlink" title="设置首页只显示部分摘要而不是全文"></a>设置首页只显示部分摘要而不是全文</h2><p>修改配置，设置Next主题的_config.yml：</p>
+<figure class="highlight yml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># Automatically excerpt description in homepage as preamble text.</span></span><br><span class="line"><span class="attr">excerpt_description:</span> <span class="literal">true</span></span><br></pre></td></tr></table></figure>
+
+<h3 id="方法一：写概述"><a href="#方法一：写概述" class="headerlink" title="方法一：写概述"></a>方法一：写概述</h3><p>在文章的front-matter中添加description，其中description中的内容就会被显示在首页上，其余一律不显示。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">---</span><br><span class="line">title: 让首页显示部分内容</span><br><span class="line">date: 2020-02-23 22:55:10</span><br><span class="line">description: 这是显示在首页的概述，正文内容均会被隐藏。</span><br><span class="line">---</span><br></pre></td></tr></table></figure>
+<p>比较不方便的是还得写一下概述，很多时候会懒得写概述，于是就需要第二种方法了。</p>
+<h3 id="方法二：文章截断"><a href="#方法二：文章截断" class="headerlink" title="方法二：文章截断"></a>方法二：文章截断</h3><p>在需要截断的地方加入：</p>
+<figure class="highlight markdown"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&lt;!--more--&gt;</span><br></pre></td></tr></table></figure>
+<p>首页就会显示这条以上的所有内容，隐藏接下来的所有内容。</p>
+<p>这个明显就方便很多，但当然有利有弊，比如开头都是废话首页看着就不是很好看，因此可以先选择方法二，如果感觉文章前面的写的不太好再用方法一。</p>
 <h2 id="写作基本操作"><a href="#写作基本操作" class="headerlink" title="写作基本操作"></a>写作基本操作</h2><p>你可以执行下列命令来创建一篇新文章或者新的页面。</p>
 <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo new [layout] &lt;title&gt;</span><br></pre></td></tr></table></figure>
 <p>您可以在命令中指定文章的布局（layout），默认为 post，可以通过修改 _config.yml 中的 default_layout 参数来指定默认布局。</p>
@@ -550,6 +560,7 @@
 <li><a target="_blank" rel="noopener" href="https://hexo.io/zh-cn/docs/writing">https://hexo.io/zh-cn/docs/writing</a></li>
 <li><a target="_blank" rel="noopener" href="https://www.jianshu.com/p/02fc71f3633f">https://www.jianshu.com/p/02fc71f3633f</a></li>
 <li><a target="_blank" rel="noopener" href="https://hexo.io/zh-cn/docs/asset-folders#Embedding-an-image-using-markdown">https://hexo.io/zh-cn/docs/asset-folders#Embedding-an-image-using-markdown</a></li>
+<li><a target="_blank" rel="noopener" href="https://blog.csdn.net/yueyue200830/article/details/104470646">https://blog.csdn.net/yueyue200830/article/details/104470646</a></li>
 </ul>
 
       
