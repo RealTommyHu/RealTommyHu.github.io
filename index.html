@@ -176,7 +176,7 @@
                   <i class="far fa-calendar-check"></i>
                 </span>
                 <span class="post-meta-item-text">Edited on</span>
-                <time title="Modified: 2021-04-23 19:52:44" itemprop="dateModified" datetime="2021-04-23T19:52:44+08:00">2021-04-23</time>
+                <time title="Modified: 2021-04-23 20:59:21" itemprop="dateModified" datetime="2021-04-23T20:59:21+08:00">2021-04-23</time>
               </span>
             <span class="post-meta-item">
               <span class="post-meta-item-icon">
@@ -234,6 +234,20 @@
 <p>Set theme in main Hexo root config _config.yml file:</p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">theme: next</span><br></pre></td></tr></table></figure>
 
+<h2 id="增加评论功能"><a href="#增加评论功能" class="headerlink" title="增加评论功能"></a>增加评论功能</h2><h3 id="Gitalk评论系统"><a href="#Gitalk评论系统" class="headerlink" title="Gitalk评论系统"></a><a target="_blank" rel="noopener" href="https://gitalk.github.io/">Gitalk评论系统</a></h3><h4 id="什么是Gitalk？"><a href="#什么是Gitalk？" class="headerlink" title="什么是Gitalk？"></a>什么是Gitalk？</h4><p>Gitalk 是一个基于 GitHub Issue 和 Preact 开发的评论插件。特性：</p>
+<ul>
+<li>使用 GitHub 登录</li>
+<li>支持多语言 [en, zh-CN, zh-TW, es-ES, fr, ru, de, pl, ko]</li>
+<li>支持个人或组织</li>
+<li>无干扰模式（设置 distractionFreeMode 为 true 开启）</li>
+<li>快捷键提交评论 （cmd|ctrl + enter）</li>
+</ul>
+<h4 id="配置安装"><a href="#配置安装" class="headerlink" title="配置安装"></a>配置安装</h4><ol>
+<li>先在 GitHub 上注册新应用，<a target="_blank" rel="noopener" href="https://github.com/settings/applications/new%E3%80%82">https://github.com/settings/applications/new。</a></li>
+<li>点击注册，获取Client ID和Client Secret，在后面的配置中需要用到，这是应用访问你 Github 的凭证。</li>
+<li>Next 主题 v7.6.0 中已经默认集成了gitalk，只需在\themes\next_config.yml锁定gitalk配置开启使用。<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line">gitalk:</span><br><span class="line">enable: true  #启用gitalk</span><br><span class="line">github_id:   #github帐号</span><br><span class="line">id: location.pathname  #此设置参照下文常见问题说明</span><br><span class="line">repo:   #存放评论的仓库名称</span><br><span class="line">client_id:   #application的id，即上文Client ID</span><br><span class="line">client_secret:  #application的密码，即上文Client Secret</span><br><span class="line">admin_user:  #GitHub repo owner and collaborators, only these guys can initialize gitHub issues</span><br><span class="line">distraction_free_mode: true # Facebook-like distraction free mode</span><br><span class="line"># Gitalk&#39;s display language depends on user&#39;s browser or system environment</span><br><span class="line"># If you want everyone visiting your site to see a uniform language, you can set a force language value</span><br><span class="line"># Available values: en | es-ES | fr | ru | zh-CN | zh-TW</span><br><span class="line">language: zh-CN</span><br></pre></td></tr></table></figure></li>
+<li>重新部署博客，打开页面进入某一博客内容下，评论会出现在页面最下方。</li>
+</ol>
 <h1 id="hexo使用教程"><a href="#hexo使用教程" class="headerlink" title="hexo使用教程"></a>hexo使用教程</h1><h2 id="文章发布"><a href="#文章发布" class="headerlink" title="文章发布"></a>文章发布</h2><ul>
 <li>新建文章：hexo new post “article_title”，打开<code>.\source\_posts</code>目录可看到文章文件<code>article_title.md</code>，打开文件即可写文章。</li>
 <li>生成静态网页：<code>hexo g</code>。然后可通过<code>hexo s</code>在本地预览效果。</li>
@@ -389,6 +403,7 @@
 <li><a target="_blank" rel="noopener" href="https://blog.csdn.net/Candle_light/article/details/114992784">https://blog.csdn.net/Candle_light/article/details/114992784</a></li>
 <li><a target="_blank" rel="noopener" href="https://github.com/theme-next/hexo-theme-next/blob/master/docs/INSTALLATION.md">https://github.com/theme-next/hexo-theme-next/blob/master/docs/INSTALLATION.md</a></li>
 <li><a target="_blank" rel="noopener" href="https://hexo.io/zh-cn/docs/writing">https://hexo.io/zh-cn/docs/writing</a></li>
+<li><a target="_blank" rel="noopener" href="https://www.jianshu.com/p/02fc71f3633f">https://www.jianshu.com/p/02fc71f3633f</a></li>
 </ul>
 
       
@@ -538,6 +553,11 @@
             <a href="/categories/">
         <span class="site-state-item-count">1</span>
         <span class="site-state-item-name">categories</span></a>
+      </div>
+      <div class="site-state-item site-state-tags">
+            <a href="/tags/">
+        <span class="site-state-item-count">2</span>
+        <span class="site-state-item-name">tags</span></a>
       </div>
   </nav>
 </div>
