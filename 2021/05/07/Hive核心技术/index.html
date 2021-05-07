@@ -20,12 +20,12 @@
     var CONFIG = {"hostname":"example.com","root":"/","scheme":"Muse","version":"7.8.0","exturl":false,"sidebar":{"position":"left","display":"always","padding":18,"offset":12,"onmobile":false},"copycode":{"enable":false,"show_result":false,"style":null},"back2top":{"enable":true,"sidebar":false,"scrollpercent":false},"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"algolia":{"hits":{"per_page":10},"labels":{"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}},"localsearch":{"enable":false,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}}};
   </script>
 
-  <meta name="description" content="Hive简介及核心概念一、简介Hive 是一个构建在 Hadoop 之上的数据仓库，它可以将结构化的数据文件映射成表，并提供类 SQL 查询功能，用于查询的 SQL 语句会被转化为 MapReduce 作业，然后提交到 Hadoop 上运行。 特点：  简单、容易上手 (提供了类似 sql 的查询语言 hql)，使得精通 sql 但是不了解 Java 编程的人也能很好地进行大数据分析； 灵活性高，">
+  <meta name="description" content="Hive简介及核心概念一、简介Hive 是一个构建在 Hadoop 之上的数据仓库，它可以将结构化的数据文件映射成表，并提供类 SQL 查询功能，用于查询的 SQL 语句会被转化为 MapReduce 作业，然后提交到 Hadoop 上运行。">
 <meta property="og:type" content="article">
 <meta property="og:title" content="Hive核心技术">
 <meta property="og:url" content="http://example.com/2021/05/07/Hive%E6%A0%B8%E5%BF%83%E6%8A%80%E6%9C%AF/index.html">
 <meta property="og:site_name" content="TommyHu的技术小馆">
-<meta property="og:description" content="Hive简介及核心概念一、简介Hive 是一个构建在 Hadoop 之上的数据仓库，它可以将结构化的数据文件映射成表，并提供类 SQL 查询功能，用于查询的 SQL 语句会被转化为 MapReduce 作业，然后提交到 Hadoop 上运行。 特点：  简单、容易上手 (提供了类似 sql 的查询语言 hql)，使得精通 sql 但是不了解 Java 编程的人也能很好地进行大数据分析； 灵活性高，">
+<meta property="og:description" content="Hive简介及核心概念一、简介Hive 是一个构建在 Hadoop 之上的数据仓库，它可以将结构化的数据文件映射成表，并提供类 SQL 查询功能，用于查询的 SQL 语句会被转化为 MapReduce 作业，然后提交到 Hadoop 上运行。">
 <meta property="og:locale" content="zh_CN">
 <meta property="og:image" content="http://example.com/2021/05/07/Hive%E6%A0%B8%E5%BF%83%E6%8A%80%E6%9C%AF/hive%E4%BD%93%E7%B3%BB%E6%9E%B6%E6%9E%84.png">
 <meta property="og:image" content="http://example.com/2021/05/07/Hive%E6%A0%B8%E5%BF%83%E6%8A%80%E6%9C%AF/hive-data-type.png">
@@ -33,7 +33,7 @@
 <meta property="og:image" content="https://gitee.com/heibaiying/BigData-Notes/raw/master/pictures/hive-install-2.png">
 <meta property="og:image" content="https://gitee.com/heibaiying/BigData-Notes/raw/master/pictures/hive-mysql-tables.png">
 <meta property="article:published_time" content="2021-05-07T01:06:04.000Z">
-<meta property="article:modified_time" content="2021-05-07T13:34:16.011Z">
+<meta property="article:modified_time" content="2021-05-07T13:37:40.544Z">
 <meta property="article:author" content="Tommy Hu">
 <meta property="article:tag" content="Hive">
 <meta name="twitter:card" content="summary">
@@ -192,7 +192,7 @@
               <span class="post-meta-item-text">发表于</span>
               
 
-              <time title="创建时间：2021-05-07 09:06:04 / 修改时间：21:34:16" itemprop="dateCreated datePublished" datetime="2021-05-07T09:06:04+08:00">2021-05-07</time>
+              <time title="创建时间：2021-05-07 09:06:04 / 修改时间：21:37:40" itemprop="dateCreated datePublished" datetime="2021-05-07T09:06:04+08:00">2021-05-07</time>
             </span>
             <span class="post-meta-item">
               <span class="post-meta-item-icon">
@@ -216,6 +216,8 @@
 
       
         <h1 id="Hive简介及核心概念"><a href="#Hive简介及核心概念" class="headerlink" title="Hive简介及核心概念"></a>Hive简介及核心概念</h1><h2 id="一、简介"><a href="#一、简介" class="headerlink" title="一、简介"></a>一、简介</h2><p>Hive 是一个构建在 Hadoop 之上的数据仓库，它可以将结构化的数据文件映射成表，并提供类 SQL 查询功能，用于查询的 SQL 语句会被转化为 MapReduce 作业，然后提交到 Hadoop 上运行。</p>
+<span id="more"></span>
+
 <p><strong>特点</strong>：</p>
 <ol>
 <li>简单、容易上手 (提供了类似 sql 的查询语言 hql)，使得精通 sql 但是不了解 Java 编程的人也能很好地进行大数据分析；</li>
