@@ -20,30 +20,53 @@
     var CONFIG = {"hostname":"example.com","root":"/","scheme":"Muse","version":"7.8.0","exturl":false,"sidebar":{"position":"left","display":"always","padding":18,"offset":12,"onmobile":false},"copycode":{"enable":false,"show_result":false,"style":null},"back2top":{"enable":true,"sidebar":false,"scrollpercent":false},"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"algolia":{"hits":{"per_page":10},"labels":{"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}},"localsearch":{"enable":false,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}}};
   </script>
 
-  <meta name="description" content="写点东西">
-<meta property="og:type" content="website">
-<meta property="og:title" content="TommyHu的技术小馆">
-<meta property="og:url" content="http://example.com/index.html">
+  <meta name="description" content="HBase简介一、Hadoop的局限HBase 是一个构建在 Hadoop 文件系统之上的面向列的数据库管理系统。  要想明白为什么产生 HBase，就需要先了解一下 Hadoop 存在的限制？Hadoop 可以通过 HDFS 来存储结构化、半结构甚至非结构化的数据，它是传统数据库的补充，是海量数据存储的最佳方法，它针对大文件的存储，批量访问和流式访问都做了优化，同时也通过多副本解决了容灾问题。">
+<meta property="og:type" content="article">
+<meta property="og:title" content="HBase核心技术">
+<meta property="og:url" content="http://example.com/2021/05/10/HBase%E6%A0%B8%E5%BF%83%E6%8A%80%E6%9C%AF/index.html">
 <meta property="og:site_name" content="TommyHu的技术小馆">
-<meta property="og:description" content="写点东西">
+<meta property="og:description" content="HBase简介一、Hadoop的局限HBase 是一个构建在 Hadoop 文件系统之上的面向列的数据库管理系统。  要想明白为什么产生 HBase，就需要先了解一下 Hadoop 存在的限制？Hadoop 可以通过 HDFS 来存储结构化、半结构甚至非结构化的数据，它是传统数据库的补充，是海量数据存储的最佳方法，它针对大文件的存储，批量访问和流式访问都做了优化，同时也通过多副本解决了容灾问题。">
 <meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="http://example.com/2021/05/10/HBase%E6%A0%B8%E5%BF%83%E6%8A%80%E6%9C%AF/hbase.jpg">
+<meta property="og:image" content="http://example.com/2021/05/10/HBase%E6%A0%B8%E5%BF%83%E6%8A%80%E6%9C%AF/HBase_table-iteblog.png">
+<meta property="og:image" content="http://example.com/2021/05/10/HBase%E6%A0%B8%E5%BF%83%E6%8A%80%E6%9C%AF/hbase-webtable.png">
+<meta property="og:image" content="http://example.com/2021/05/10/HBase%E6%A0%B8%E5%BF%83%E6%8A%80%E6%9C%AF/HBaseArchitecture-Blog-Fig2.png">
+<meta property="og:image" content="http://example.com/2021/05/10/HBase%E6%A0%B8%E5%BF%83%E6%8A%80%E6%9C%AF/hbase-region-splite.png">
+<meta property="og:image" content="http://example.com/2021/05/10/HBase%E6%A0%B8%E5%BF%83%E6%8A%80%E6%9C%AF/hbase-region-dis.png">
+<meta property="og:image" content="http://example.com/2021/05/10/HBase%E6%A0%B8%E5%BF%83%E6%8A%80%E6%9C%AF/hbase-Region-Server.png">
+<meta property="og:image" content="http://example.com/2021/05/10/HBase%E6%A0%B8%E5%BF%83%E6%8A%80%E6%9C%AF/hbase-hadoop.png">
+<meta property="og:image" content="http://example.com/2021/05/10/HBase%E6%A0%B8%E5%BF%83%E6%8A%80%E6%9C%AF/HBaseArchitecture-Blog-Fig1.png">
+<meta property="og:image" content="http://example.com/2021/05/10/HBase%E6%A0%B8%E5%BF%83%E6%8A%80%E6%9C%AF/HBaseArchitecture-Blog-Fig5.png">
+<meta property="og:image" content="http://example.com/2021/05/10/HBase%E6%A0%B8%E5%BF%83%E6%8A%80%E6%9C%AF/HBaseArchitecture-Blog-Fig7.png">
+<meta property="og:image" content="http://example.com/2021/05/10/HBase%E6%A0%B8%E5%BF%83%E6%8A%80%E6%9C%AF/deprecated.png">
+<meta property="og:image" content="http://example.com/2021/05/10/HBase%E6%A0%B8%E5%BF%83%E6%8A%80%E6%9C%AF/hbase-arc.png">
+<meta property="og:image" content="http://example.com/2021/05/10/HBase%E6%A0%B8%E5%BF%83%E6%8A%80%E6%9C%AF/hbase-connection.png">
+<meta property="og:image" content="http://example.com/2021/05/10/HBase%E6%A0%B8%E5%BF%83%E6%8A%80%E6%9C%AF/hbase-fliter.png">
+<meta property="og:image" content="http://example.com/2021/05/10/HBase%E6%A0%B8%E5%BF%83%E6%8A%80%E6%9C%AF/hbase-filterbase-subclass.png">
+<meta property="og:image" content="http://example.com/2021/05/10/HBase%E6%A0%B8%E5%BF%83%E6%8A%80%E6%9C%AF/hbase-bytearraycomparable.png">
+<meta property="og:image" content="http://example.com/2021/05/10/HBase%E6%A0%B8%E5%BF%83%E6%8A%80%E6%9C%AF/hbase-compareFilter.png">
+<meta property="og:image" content="http://example.com/2021/05/10/HBase%E6%A0%B8%E5%BF%83%E6%8A%80%E6%9C%AF/ref1.png">
+<meta property="article:published_time" content="2021-05-10T01:44:48.000Z">
+<meta property="article:modified_time" content="2021-05-13T13:14:34.575Z">
 <meta property="article:author" content="Tommy Hu">
+<meta property="article:tag" content="HBase">
 <meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="http://example.com/2021/05/10/HBase%E6%A0%B8%E5%BF%83%E6%8A%80%E6%9C%AF/hbase.jpg">
 
-<link rel="canonical" href="http://example.com/">
+<link rel="canonical" href="http://example.com/2021/05/10/HBase%E6%A0%B8%E5%BF%83%E6%8A%80%E6%9C%AF/">
 
 
 <script id="page-configurations">
   // https://hexo.io/docs/variables.html
   CONFIG.page = {
     sidebar: "",
-    isHome : true,
-    isPost : false,
+    isHome : false,
+    isPost : true,
     lang   : 'zh-CN'
   };
 </script>
 
-  <title>TommyHu的技术小馆</title>
+  <title>HBase核心技术 | TommyHu的技术小馆</title>
   
 
 
@@ -152,9 +175,10 @@
         <div class="content-wrap">
           
 
-          <div class="content index posts-expand">
+          <div class="content post posts-expand">
             
-      
+
+    
   
   
   <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
@@ -170,10 +194,9 @@
       <meta itemprop="name" content="TommyHu的技术小馆">
     </span>
       <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          
-            <a href="/2021/05/10/HBase%E6%A0%B8%E5%BF%83%E6%8A%80%E6%9C%AF/" class="post-title-link" itemprop="url">HBase核心技术</a>
-        </h2>
+        <h1 class="post-title" itemprop="name headline">
+          HBase核心技术
+        </h1>
 
         <div class="post-meta">
             <span class="post-meta-item">
@@ -212,7 +235,7 @@
     <div class="post-body" itemprop="articleBody">
 
       
-          <h1 id="HBase简介"><a href="#HBase简介" class="headerlink" title="HBase简介"></a>HBase简介</h1><h2 id="一、Hadoop的局限"><a href="#一、Hadoop的局限" class="headerlink" title="一、Hadoop的局限"></a>一、Hadoop的局限</h2><p>HBase 是一个构建在 Hadoop 文件系统之上的面向列的数据库管理系统。</p>
+        <h1 id="HBase简介"><a href="#HBase简介" class="headerlink" title="HBase简介"></a>HBase简介</h1><h2 id="一、Hadoop的局限"><a href="#一、Hadoop的局限" class="headerlink" title="一、Hadoop的局限"></a>一、Hadoop的局限</h2><p>HBase 是一个构建在 Hadoop 文件系统之上的面向列的数据库管理系统。</p>
 <p><img src="/2021/05/10/HBase%E6%A0%B8%E5%BF%83%E6%8A%80%E6%9C%AF/hbase.jpg" alt="hbase.jpg"></p>
 <p>要想明白为什么产生 HBase，就需要先了解一下 Hadoop 存在的限制？Hadoop 可以通过 HDFS 来存储结构化、半结构甚至非结构化的数据，它是传统数据库的补充，是海量数据存储的最佳方法，它针对大文件的存储，批量访问和流式访问都做了优化，同时也通过多副本解决了容灾问题。</p>
 <p>但是 Hadoop 的缺陷在于它只能执行批处理，并且只能以顺序方式访问数据，这意味着即使是最简单的工作，也必须搜索整个数据集，无法实现对数据的随机访问。实现数据的随机访问是传统的关系型数据库所擅长的，但它们却不能用于海量数据的存储。在这种情况下，必须有一种新的方案来解决海量数据存储和随机访问的问题，HBase 就是其中之一 (HBase，Cassandra，couchDB，Dynamo 和 MongoDB 都能存储海量数据并支持随机访问)。</p>
@@ -726,501 +749,40 @@
 <li><a target="_blank" rel="noopener" href="https://github.com/RealTommyHu/BigData-Notes/blob/master/notes/Hbase%E8%BF%87%E6%BB%A4%E5%99%A8%E8%AF%A6%E8%A7%A3.md">https://github.com/RealTommyHu/BigData-Notes/blob/master/notes/Hbase过滤器详解.md</a></li>
 </ul>
 
-      
     </div>
 
     
     
     
+
       <footer class="post-footer">
-        <div class="post-eof"></div>
-      </footer>
-  </article>
-  
-  
-  
+          <div class="post-tags">
+              <a href="/tags/HBase/" rel="tag"># HBase</a>
+          </div>
 
-      
-  
-  
-  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
-    <link itemprop="mainEntityOfPage" href="http://example.com/2021/05/07/Hive%E6%A0%B8%E5%BF%83%E6%8A%80%E6%9C%AF/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/avatar.gif">
-      <meta itemprop="name" content="Tommy Hu">
-      <meta itemprop="description" content="写点东西">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="TommyHu的技术小馆">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          
-            <a href="/2021/05/07/Hive%E6%A0%B8%E5%BF%83%E6%8A%80%E6%9C%AF/" class="post-title-link" itemprop="url">Hive核心技术</a>
-        </h2>
-
-        <div class="post-meta">
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-calendar"></i>
-              </span>
-              <span class="post-meta-item-text">发表于</span>
-
-              <time title="创建时间：2021-05-07 09:06:04" itemprop="dateCreated datePublished" datetime="2021-05-07T09:06:04+08:00">2021-05-07</time>
-            </span>
-              <span class="post-meta-item">
-                <span class="post-meta-item-icon">
-                  <i class="far fa-calendar-check"></i>
-                </span>
-                <span class="post-meta-item-text">更新于</span>
-                <time title="修改时间：2021-05-09 23:29:04" itemprop="dateModified" datetime="2021-05-09T23:29:04+08:00">2021-05-09</time>
-              </span>
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-folder"></i>
-              </span>
-              <span class="post-meta-item-text">分类于</span>
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/%E5%A4%A7%E6%95%B0%E6%8D%AE/" itemprop="url" rel="index"><span itemprop="name">大数据</span></a>
-                </span>
-            </span>
-
-          
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-          <h1 id="Hive简介及核心概念"><a href="#Hive简介及核心概念" class="headerlink" title="Hive简介及核心概念"></a>Hive简介及核心概念</h1><h2 id="一、简介"><a href="#一、简介" class="headerlink" title="一、简介"></a>一、简介</h2><p>Hive 是一个构建在 Hadoop 之上的数据仓库，它可以将结构化的数据文件映射成表，并提供类 SQL 查询功能，用于查询的 SQL 语句会被转化为 MapReduce 作业，然后提交到 Hadoop 上运行。</p>
-          <!--noindex-->
-            <div class="post-button">
-              <a class="btn" href="/2021/05/07/Hive%E6%A0%B8%E5%BF%83%E6%8A%80%E6%9C%AF/#more" rel="contents">
-                阅读全文 &raquo;
-              </a>
-            </div>
-          <!--/noindex-->
         
-      
-    </div>
 
-    
-    
-    
-      <footer class="post-footer">
-        <div class="post-eof"></div>
-      </footer>
-  </article>
-  
-  
-  
 
-      
-  
-  
-  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
-    <link itemprop="mainEntityOfPage" href="http://example.com/2021/04/30/Flink%E6%A0%B8%E5%BF%83%E6%8A%80%E6%9C%AF/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/avatar.gif">
-      <meta itemprop="name" content="Tommy Hu">
-      <meta itemprop="description" content="写点东西">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="TommyHu的技术小馆">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          
-            <a href="/2021/04/30/Flink%E6%A0%B8%E5%BF%83%E6%8A%80%E6%9C%AF/" class="post-title-link" itemprop="url">Flink核心技术</a>
-        </h2>
-
-        <div class="post-meta">
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-calendar"></i>
-              </span>
-              <span class="post-meta-item-text">发表于</span>
-
-              <time title="创建时间：2021-04-30 14:53:02" itemprop="dateCreated datePublished" datetime="2021-04-30T14:53:02+08:00">2021-04-30</time>
-            </span>
-              <span class="post-meta-item">
-                <span class="post-meta-item-icon">
-                  <i class="far fa-calendar-check"></i>
-                </span>
-                <span class="post-meta-item-text">更新于</span>
-                <time title="修改时间：2021-05-06 21:55:11" itemprop="dateModified" datetime="2021-05-06T21:55:11+08:00">2021-05-06</time>
-              </span>
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-folder"></i>
-              </span>
-              <span class="post-meta-item-text">分类于</span>
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/%E5%A4%A7%E6%95%B0%E6%8D%AE/" itemprop="url" rel="index"><span itemprop="name">大数据</span></a>
-                </span>
-            </span>
-
-          
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-          <h1 id="Flink核心概念概述"><a href="#Flink核心概念概述" class="headerlink" title="Flink核心概念概述"></a>Flink核心概念概述</h1><h2 id="一、Flink简介"><a href="#一、Flink简介" class="headerlink" title="一、Flink简介"></a>一、Flink简介</h2><p>Flink是分布式流处理框架，对有界和无界的数据流进行高效的处理。核心是流处理，也支持批处理，将批处理看成是流处理的一种特殊情况，即：数据流是有明确界限的。而Spark Streaming核心是批处理，将流处理看成是批处理的一种特殊情况，即：把数据流进行极小粒度的拆分，拆分成多个微批处理。</p>
-          <!--noindex-->
-            <div class="post-button">
-              <a class="btn" href="/2021/04/30/Flink%E6%A0%B8%E5%BF%83%E6%8A%80%E6%9C%AF/#more" rel="contents">
-                阅读全文 &raquo;
-              </a>
-            </div>
-          <!--/noindex-->
         
-      
+    <div class="post-nav">
+      <div class="post-nav-item">
+    <a href="/2021/05/07/Hive%E6%A0%B8%E5%BF%83%E6%8A%80%E6%9C%AF/" rel="prev" title="Hive核心技术">
+      <i class="fa fa-chevron-left"></i> Hive核心技术
+    </a></div>
+      <div class="post-nav-item"></div>
     </div>
-
-    
-    
-    
-      <footer class="post-footer">
-        <div class="post-eof"></div>
       </footer>
+    
   </article>
   
   
-  
-
-      
-  
-  
-  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
-    <link itemprop="mainEntityOfPage" href="http://example.com/2021/04/25/Ubuntu%E9%85%8D%E7%BD%AEJava%E7%8E%AF%E5%A2%83/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/avatar.gif">
-      <meta itemprop="name" content="Tommy Hu">
-      <meta itemprop="description" content="写点东西">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="TommyHu的技术小馆">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          
-            <a href="/2021/04/25/Ubuntu%E9%85%8D%E7%BD%AEJava%E7%8E%AF%E5%A2%83/" class="post-title-link" itemprop="url">Ubuntu配置Java环境</a>
-        </h2>
-
-        <div class="post-meta">
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-calendar"></i>
-              </span>
-              <span class="post-meta-item-text">发表于</span>
-              
-
-              <time title="创建时间：2021-04-25 16:12:48 / 修改时间：17:06:31" itemprop="dateCreated datePublished" datetime="2021-04-25T16:12:48+08:00">2021-04-25</time>
-            </span>
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-folder"></i>
-              </span>
-              <span class="post-meta-item-text">分类于</span>
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/%E8%BF%90%E7%BB%B4/" itemprop="url" rel="index"><span itemprop="name">运维</span></a>
-                </span>
-            </span>
-
-          
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-          <p>Ubuntu18.04下安装jdk8。</p>
-          <!--noindex-->
-            <div class="post-button">
-              <a class="btn" href="/2021/04/25/Ubuntu%E9%85%8D%E7%BD%AEJava%E7%8E%AF%E5%A2%83/#more" rel="contents">
-                阅读全文 &raquo;
-              </a>
-            </div>
-          <!--/noindex-->
-        
-      
-    </div>
-
-    
-    
-    
-      <footer class="post-footer">
-        <div class="post-eof"></div>
-      </footer>
-  </article>
-  
-  
-  
-
-      
-  
-  
-  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
-    <link itemprop="mainEntityOfPage" href="http://example.com/2021/04/25/Ubuntu%E6%9B%B4%E6%8D%A2%E5%9B%BD%E5%86%85%E6%BA%90%E6%8F%90%E9%AB%98%E5%8C%85%E7%AE%A1%E7%90%86%E5%99%A8%E4%B8%8B%E8%BD%BD%E9%80%9F%E5%BA%A6/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/avatar.gif">
-      <meta itemprop="name" content="Tommy Hu">
-      <meta itemprop="description" content="写点东西">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="TommyHu的技术小馆">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          
-            <a href="/2021/04/25/Ubuntu%E6%9B%B4%E6%8D%A2%E5%9B%BD%E5%86%85%E6%BA%90%E6%8F%90%E9%AB%98%E5%8C%85%E7%AE%A1%E7%90%86%E5%99%A8%E4%B8%8B%E8%BD%BD%E9%80%9F%E5%BA%A6/" class="post-title-link" itemprop="url">Ubuntu更换国内源提高包管理器下载速度</a>
-        </h2>
-
-        <div class="post-meta">
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-calendar"></i>
-              </span>
-              <span class="post-meta-item-text">发表于</span>
-              
-
-              <time title="创建时间：2021-04-25 15:49:57 / 修改时间：16:28:46" itemprop="dateCreated datePublished" datetime="2021-04-25T15:49:57+08:00">2021-04-25</time>
-            </span>
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-folder"></i>
-              </span>
-              <span class="post-meta-item-text">分类于</span>
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/%E8%BF%90%E7%BB%B4/" itemprop="url" rel="index"><span itemprop="name">运维</span></a>
-                </span>
-            </span>
-
-          
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-          <h1 id="问题"><a href="#问题" class="headerlink" title="问题"></a>问题</h1><p>Ubuntu配置的默认源并不是国内的服务器，下载更新软件都比较慢。</p>
-          <!--noindex-->
-            <div class="post-button">
-              <a class="btn" href="/2021/04/25/Ubuntu%E6%9B%B4%E6%8D%A2%E5%9B%BD%E5%86%85%E6%BA%90%E6%8F%90%E9%AB%98%E5%8C%85%E7%AE%A1%E7%90%86%E5%99%A8%E4%B8%8B%E8%BD%BD%E9%80%9F%E5%BA%A6/#more" rel="contents">
-                阅读全文 &raquo;
-              </a>
-            </div>
-          <!--/noindex-->
-        
-      
-    </div>
-
-    
-    
-    
-      <footer class="post-footer">
-        <div class="post-eof"></div>
-      </footer>
-  </article>
-  
-  
-  
-
-      
-  
-  
-  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
-    <link itemprop="mainEntityOfPage" href="http://example.com/2021/04/23/Spark%E6%A0%B8%E5%BF%83%E6%8A%80%E6%9C%AF/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/avatar.gif">
-      <meta itemprop="name" content="Tommy Hu">
-      <meta itemprop="description" content="写点东西">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="TommyHu的技术小馆">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          
-            <a href="/2021/04/23/Spark%E6%A0%B8%E5%BF%83%E6%8A%80%E6%9C%AF/" class="post-title-link" itemprop="url">Spark核心技术</a>
-        </h2>
-
-        <div class="post-meta">
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-calendar"></i>
-              </span>
-              <span class="post-meta-item-text">发表于</span>
-
-              <time title="创建时间：2021-04-23 21:43:46" itemprop="dateCreated datePublished" datetime="2021-04-23T21:43:46+08:00">2021-04-23</time>
-            </span>
-              <span class="post-meta-item">
-                <span class="post-meta-item-icon">
-                  <i class="far fa-calendar-check"></i>
-                </span>
-                <span class="post-meta-item-text">更新于</span>
-                <time title="修改时间：2021-04-28 22:42:56" itemprop="dateModified" datetime="2021-04-28T22:42:56+08:00">2021-04-28</time>
-              </span>
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-folder"></i>
-              </span>
-              <span class="post-meta-item-text">分类于</span>
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/%E5%A4%A7%E6%95%B0%E6%8D%AE/" itemprop="url" rel="index"><span itemprop="name">大数据</span></a>
-                </span>
-            </span>
-
-          
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-          <h1 id="Spark简介"><a href="#Spark简介" class="headerlink" title="Spark简介"></a>Spark简介</h1><h2 id="一、简介"><a href="#一、简介" class="headerlink" title="一、简介"></a>一、简介</h2><p>Apache Spark是继 MapReduce 之后，最为广泛使用的分布式计算框架。相对于 MapReduce 的批处理计算，可以带来上百倍的性能提升。</p>
-          <!--noindex-->
-            <div class="post-button">
-              <a class="btn" href="/2021/04/23/Spark%E6%A0%B8%E5%BF%83%E6%8A%80%E6%9C%AF/#more" rel="contents">
-                阅读全文 &raquo;
-              </a>
-            </div>
-          <!--/noindex-->
-        
-      
-    </div>
-
-    
-    
-    
-      <footer class="post-footer">
-        <div class="post-eof"></div>
-      </footer>
-  </article>
-  
-  
-  
-
-      
-  
-  
-  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
-    <link itemprop="mainEntityOfPage" href="http://example.com/2021/04/22/%E9%80%9A%E8%BF%87GithubPages%E5%92%8C%E9%9D%99%E6%80%81%E7%AB%99%E7%82%B9%E7%94%9F%E6%88%90%E6%A1%86%E6%9E%B6Hexo%E6%90%AD%E5%BB%BA%E5%8D%9A%E5%AE%A2/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/avatar.gif">
-      <meta itemprop="name" content="Tommy Hu">
-      <meta itemprop="description" content="写点东西">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="TommyHu的技术小馆">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          
-            <a href="/2021/04/22/%E9%80%9A%E8%BF%87GithubPages%E5%92%8C%E9%9D%99%E6%80%81%E7%AB%99%E7%82%B9%E7%94%9F%E6%88%90%E6%A1%86%E6%9E%B6Hexo%E6%90%AD%E5%BB%BA%E5%8D%9A%E5%AE%A2/" class="post-title-link" itemprop="url">通过GithubPages和静态站点生成框架Hexo搭建博客</a>
-        </h2>
-
-        <div class="post-meta">
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-calendar"></i>
-              </span>
-              <span class="post-meta-item-text">发表于</span>
-
-              <time title="创建时间：2021-04-22 22:27:39" itemprop="dateCreated datePublished" datetime="2021-04-22T22:27:39+08:00">2021-04-22</time>
-            </span>
-              <span class="post-meta-item">
-                <span class="post-meta-item-icon">
-                  <i class="far fa-calendar-check"></i>
-                </span>
-                <span class="post-meta-item-text">更新于</span>
-                <time title="修改时间：2021-04-25 15:15:57" itemprop="dateModified" datetime="2021-04-25T15:15:57+08:00">2021-04-25</time>
-              </span>
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-folder"></i>
-              </span>
-              <span class="post-meta-item-text">分类于</span>
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/%E5%8D%9A%E5%AE%A2/" itemprop="url" rel="index"><span itemprop="name">博客</span></a>
-                </span>
-            </span>
-
-          
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-          <h1 id="概念简介"><a href="#概念简介" class="headerlink" title="概念简介"></a>概念简介</h1><h2 id="什么是Github-Pages？"><a href="#什么是Github-Pages？" class="headerlink" title="什么是Github Pages？"></a>什么是Github Pages？</h2><p>“GitHub Pages是GitHub提供的一个网页寄存服务，于2008年推出。可以用于存放静态网页，包括博客、项目文档甚至整本书。Jekyll软件可以用于将文档转换成静态网页，该软件提供了将网页上传到GitHub Pages的功能。一般GitHub Pages的网站使用github.io的子域名，但是用户也可以使用第三方域名。” <p align="right">——维基百科</p></p>
-          <!--noindex-->
-            <div class="post-button">
-              <a class="btn" href="/2021/04/22/%E9%80%9A%E8%BF%87GithubPages%E5%92%8C%E9%9D%99%E6%80%81%E7%AB%99%E7%82%B9%E7%94%9F%E6%88%90%E6%A1%86%E6%9E%B6Hexo%E6%90%AD%E5%BB%BA%E5%8D%9A%E5%AE%A2/#more" rel="contents">
-                阅读全文 &raquo;
-              </a>
-            </div>
-          <!--/noindex-->
-        
-      
-    </div>
-
-    
-    
-    
-      <footer class="post-footer">
-        <div class="post-eof"></div>
-      </footer>
-  </article>
-  
-  
-  
-
-
   
 
 
 
           </div>
           
+    <div class="comments" id="gitalk-container"></div>
 
 <script>
   window.addEventListener('tabs:register', () => {
@@ -1267,6 +829,7 @@
 
       <!--noindex-->
       <div class="post-toc-wrap sidebar-panel">
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#HBase%E7%AE%80%E4%BB%8B"><span class="nav-number">1.</span> <span class="nav-text">HBase简介</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E4%B8%80%E3%80%81Hadoop%E7%9A%84%E5%B1%80%E9%99%90"><span class="nav-number">1.1.</span> <span class="nav-text">一、Hadoop的局限</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E4%BA%8C%E3%80%81HBase%E7%AE%80%E4%BB%8B"><span class="nav-number">1.2.</span> <span class="nav-text">二、HBase简介</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E4%B8%89%E3%80%81HBase-Table"><span class="nav-number">1.3.</span> <span class="nav-text">三、HBase Table</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%9B%9B%E3%80%81Phoenix"><span class="nav-number">1.4.</span> <span class="nav-text">四、Phoenix</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%8F%82%E8%80%83%E8%B5%84%E6%96%99"><span class="nav-number">1.5.</span> <span class="nav-text">参考资料</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#Hbase%E7%B3%BB%E7%BB%9F%E6%9E%B6%E6%9E%84%E5%8F%8A%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84"><span class="nav-number">2.</span> <span class="nav-text">Hbase系统架构及数据结构</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E4%B8%80%E3%80%81%E5%9F%BA%E6%9C%AC%E6%A6%82%E5%BF%B5"><span class="nav-number">2.1.</span> <span class="nav-text">一、基本概念</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#1-1-Row-Key-%E8%A1%8C%E9%94%AE"><span class="nav-number">2.1.1.</span> <span class="nav-text">1.1 Row Key (行键)</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#1-2-Column-Family%EF%BC%88%E5%88%97%E6%97%8F%EF%BC%89"><span class="nav-number">2.1.2.</span> <span class="nav-text">1.2 Column Family（列族）</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#1-3-Column-Qualifier-%E5%88%97%E9%99%90%E5%AE%9A%E7%AC%A6"><span class="nav-number">2.1.3.</span> <span class="nav-text">1.3 Column Qualifier (列限定符)</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#1-4-Column-%E5%88%97"><span class="nav-number">2.1.4.</span> <span class="nav-text">1.4 Column(列)</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#1-5-Cell"><span class="nav-number">2.1.5.</span> <span class="nav-text">1.5 Cell</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#1-6-Timestamp-%E6%97%B6%E9%97%B4%E6%88%B3"><span class="nav-number">2.1.6.</span> <span class="nav-text">1.6 Timestamp(时间戳)</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E4%BA%8C%E3%80%81%E5%AD%98%E5%82%A8%E7%BB%93%E6%9E%84"><span class="nav-number">2.2.</span> <span class="nav-text">二、存储结构</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#2-1-Regions"><span class="nav-number">2.2.1.</span> <span class="nav-text">2.1 Regions</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#2-2-Region-Server"><span class="nav-number">2.2.2.</span> <span class="nav-text">2.2 Region Server</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E4%B8%89%E3%80%81Hbase%E7%B3%BB%E7%BB%9F%E6%9E%B6%E6%9E%84"><span class="nav-number">2.3.</span> <span class="nav-text">三、Hbase系统架构</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#3-1-%E7%B3%BB%E7%BB%9F%E6%9E%B6%E6%9E%84"><span class="nav-number">2.3.1.</span> <span class="nav-text">3.1 系统架构</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#3-2-%E7%BB%84%E4%BB%B6%E9%97%B4%E7%9A%84%E5%8D%8F%E4%BD%9C"><span class="nav-number">2.3.2.</span> <span class="nav-text">3.2 组件间的协作</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%9B%9B%E3%80%81%E6%95%B0%E6%8D%AE%E7%9A%84%E8%AF%BB%E5%86%99%E6%B5%81%E7%A8%8B%E7%AE%80%E8%BF%B0"><span class="nav-number">2.4.</span> <span class="nav-text">四、数据的读写流程简述</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#4-1-%E5%86%99%E5%85%A5%E6%95%B0%E6%8D%AE%E7%9A%84%E6%B5%81%E7%A8%8B"><span class="nav-number">2.4.1.</span> <span class="nav-text">4.1 写入数据的流程</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#4-2-%E8%AF%BB%E5%8F%96%E6%95%B0%E6%8D%AE%E7%9A%84%E6%B5%81%E7%A8%8B"><span class="nav-number">2.4.2.</span> <span class="nav-text">4.2 读取数据的流程</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%8F%82%E8%80%83%E8%B5%84%E6%96%99-1"><span class="nav-number">2.5.</span> <span class="nav-text">参考资料</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#Hbase-%E5%B8%B8%E7%94%A8-Shell-%E5%91%BD%E4%BB%A4"><span class="nav-number">3.</span> <span class="nav-text">Hbase 常用 Shell 命令</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E4%B8%80%E3%80%81%E5%9F%BA%E6%9C%AC%E5%91%BD%E4%BB%A4"><span class="nav-number">3.1.</span> <span class="nav-text">一、基本命令</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#1-1-%E8%8E%B7%E5%8F%96%E5%B8%AE%E5%8A%A9"><span class="nav-number">3.1.0.1.</span> <span class="nav-text">1.1 获取帮助</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#1-2-%E6%9F%A5%E7%9C%8B%E6%9C%8D%E5%8A%A1%E5%99%A8%E7%8A%B6%E6%80%81"><span class="nav-number">3.1.0.2.</span> <span class="nav-text">1.2 查看服务器状态</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#1-3-%E6%9F%A5%E7%9C%8B%E7%89%88%E6%9C%AC%E4%BF%A1%E6%81%AF"><span class="nav-number">3.1.0.3.</span> <span class="nav-text">1.3 查看版本信息</span></a></li></ol></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E4%BA%8C%E3%80%81%E5%85%B3%E4%BA%8E%E8%A1%A8%E7%9A%84%E6%93%8D%E4%BD%9C"><span class="nav-number">3.2.</span> <span class="nav-text">二、关于表的操作</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#2-1-%E6%9F%A5%E7%9C%8B%E6%89%80%E6%9C%89%E8%A1%A8"><span class="nav-number">3.2.0.1.</span> <span class="nav-text">2.1 查看所有表</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#2-2-%E5%88%9B%E5%BB%BA%E8%A1%A8"><span class="nav-number">3.2.0.2.</span> <span class="nav-text">2.2 创建表</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#2-3-%E6%9F%A5%E7%9C%8B%E8%A1%A8%E7%9A%84%E5%9F%BA%E6%9C%AC%E4%BF%A1%E6%81%AF"><span class="nav-number">3.2.0.3.</span> <span class="nav-text">2.3 查看表的基本信息</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#2-4-%E8%A1%A8%E7%9A%84%E5%90%AF%E7%94%A8-%E7%A6%81%E7%94%A8"><span class="nav-number">3.2.0.4.</span> <span class="nav-text">2.4 表的启用&#x2F;禁用</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#2-5-%E6%A3%80%E6%9F%A5%E8%A1%A8%E6%98%AF%E5%90%A6%E5%AD%98%E5%9C%A8"><span class="nav-number">3.2.0.5.</span> <span class="nav-text">2.5 检查表是否存在</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#2-6-%E5%88%A0%E9%99%A4%E8%A1%A8"><span class="nav-number">3.2.0.6.</span> <span class="nav-text">2.6 删除表</span></a></li></ol></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E4%B8%89%E3%80%81%E5%A2%9E%E5%88%A0%E6%94%B9"><span class="nav-number">3.3.</span> <span class="nav-text">三、增删改</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#3-1-%E6%B7%BB%E5%8A%A0%E5%88%97%E6%97%8F"><span class="nav-number">3.3.0.1.</span> <span class="nav-text">3.1 添加列族</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#3-2-%E5%88%A0%E9%99%A4%E5%88%97%E6%97%8F"><span class="nav-number">3.3.0.2.</span> <span class="nav-text">3.2 删除列族</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#3-3-%E6%9B%B4%E6%94%B9%E5%88%97%E6%97%8F%E5%AD%98%E5%82%A8%E7%89%88%E6%9C%AC%E7%9A%84%E9%99%90%E5%88%B6"><span class="nav-number">3.3.0.3.</span> <span class="nav-text">3.3 更改列族存储版本的限制</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#3-4-%E6%8F%92%E5%85%A5%E6%95%B0%E6%8D%AE"><span class="nav-number">3.3.0.4.</span> <span class="nav-text">3.4 插入数据</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#3-5-%E8%8E%B7%E5%8F%96%E6%8C%87%E5%AE%9A%E8%A1%8C%E3%80%81%E6%8C%87%E5%AE%9A%E8%A1%8C%E4%B8%AD%E7%9A%84%E5%88%97%E6%97%8F%E3%80%81%E5%88%97%E7%9A%84%E4%BF%A1%E6%81%AF"><span class="nav-number">3.3.0.5.</span> <span class="nav-text">3.5 获取指定行、指定行中的列族、列的信息</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#3-6-%E5%88%A0%E9%99%A4%E6%8C%87%E5%AE%9A%E8%A1%8C%E3%80%81%E6%8C%87%E5%AE%9A%E8%A1%8C%E4%B8%AD%E7%9A%84%E5%88%97"><span class="nav-number">3.3.0.6.</span> <span class="nav-text">3.6 删除指定行、指定行中的列</span></a></li></ol></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%9B%9B%E3%80%81%E6%9F%A5%E8%AF%A2"><span class="nav-number">3.4.</span> <span class="nav-text">四、查询</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#4-1Get%E6%9F%A5%E8%AF%A2"><span class="nav-number">3.4.0.1.</span> <span class="nav-text">4.1Get查询</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#4-2-%E6%9F%A5%E8%AF%A2%E6%95%B4%E8%A1%A8%E6%95%B0%E6%8D%AE"><span class="nav-number">3.4.0.2.</span> <span class="nav-text">4.2 查询整表数据</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#4-3-%E6%9F%A5%E8%AF%A2%E6%8C%87%E5%AE%9A%E5%88%97%E7%B0%87%E7%9A%84%E6%95%B0%E6%8D%AE"><span class="nav-number">3.4.0.3.</span> <span class="nav-text">4.3 查询指定列簇的数据</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#4-4-%E6%9D%A1%E4%BB%B6%E6%9F%A5%E8%AF%A2"><span class="nav-number">3.4.0.4.</span> <span class="nav-text">4.4  条件查询</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#4-5-%E6%9D%A1%E4%BB%B6%E8%BF%87%E6%BB%A4"><span class="nav-number">3.4.0.5.</span> <span class="nav-text">4.5  条件过滤</span></a></li></ol></li></ol></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#HBase-Java-API-%E7%9A%84%E5%9F%BA%E6%9C%AC%E4%BD%BF%E7%94%A8"><span class="nav-number">4.</span> <span class="nav-text">HBase Java API 的基本使用</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E4%B8%80%E3%80%81%E7%AE%80%E8%BF%B0"><span class="nav-number">4.1.</span> <span class="nav-text">一、简述</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E4%BA%8C%E3%80%81Java-API-1-x-%E5%9F%BA%E6%9C%AC%E4%BD%BF%E7%94%A8"><span class="nav-number">4.2.</span> <span class="nav-text">二、Java API 1.x 基本使用</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#2-1-%E6%96%B0%E5%BB%BAMaven%E5%B7%A5%E7%A8%8B%EF%BC%8C%E5%AF%BC%E5%85%A5%E9%A1%B9%E7%9B%AE%E4%BE%9D%E8%B5%96"><span class="nav-number">4.2.0.1.</span> <span class="nav-text">2.1 新建Maven工程，导入项目依赖</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#2-2-API-%E5%9F%BA%E6%9C%AC%E4%BD%BF%E7%94%A8"><span class="nav-number">4.2.0.2.</span> <span class="nav-text">2.2 API 基本使用</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#2-3-%E5%8D%95%E5%85%83%E6%B5%8B%E8%AF%95"><span class="nav-number">4.2.1.</span> <span class="nav-text">2.3 单元测试</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E4%B8%89%E3%80%81Java-API-2-x-%E5%9F%BA%E6%9C%AC%E4%BD%BF%E7%94%A8"><span class="nav-number">4.3.</span> <span class="nav-text">三、Java API 2.x 基本使用</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#3-1-%E6%96%B0%E5%BB%BAMaven%E5%B7%A5%E7%A8%8B%EF%BC%8C%E5%AF%BC%E5%85%A5%E9%A1%B9%E7%9B%AE%E4%BE%9D%E8%B5%96"><span class="nav-number">4.3.0.1.</span> <span class="nav-text">3.1 新建Maven工程，导入项目依赖</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#3-2-API-%E7%9A%84%E5%9F%BA%E6%9C%AC%E4%BD%BF%E7%94%A8"><span class="nav-number">4.3.0.2.</span> <span class="nav-text">3.2 API 的基本使用</span></a></li></ol></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%9B%9B%E3%80%81%E6%AD%A3%E7%A1%AE%E8%BF%9E%E6%8E%A5Hbase"><span class="nav-number">4.4.</span> <span class="nav-text">四、正确连接Hbase</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%8F%82%E8%80%83%E8%B5%84%E6%96%99-2"><span class="nav-number">4.5.</span> <span class="nav-text">参考资料</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#Hbase-%E8%BF%87%E6%BB%A4%E5%99%A8%E8%AF%A6%E8%A7%A3"><span class="nav-number">5.</span> <span class="nav-text">Hbase 过滤器详解</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E4%B8%80%E3%80%81HBase%E8%BF%87%E6%BB%A4%E5%99%A8%E7%AE%80%E4%BB%8B"><span class="nav-number">5.1.</span> <span class="nav-text">一、HBase过滤器简介</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E4%BA%8C%E3%80%81%E8%BF%87%E6%BB%A4%E5%99%A8%E5%9F%BA%E7%A1%80"><span class="nav-number">5.2.</span> <span class="nav-text">二、过滤器基础</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#2-1-Filter%E6%8E%A5%E5%8F%A3%E5%92%8CFilterBase%E6%8A%BD%E8%B1%A1%E7%B1%BB"><span class="nav-number">5.2.1.</span> <span class="nav-text">2.1  Filter接口和FilterBase抽象类</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#2-2-%E8%BF%87%E6%BB%A4%E5%99%A8%E5%88%86%E7%B1%BB"><span class="nav-number">5.2.2.</span> <span class="nav-text">2.2 过滤器分类</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E4%B8%89%E3%80%81%E6%AF%94%E8%BE%83%E8%BF%87%E6%BB%A4%E5%99%A8"><span class="nav-number">5.3.</span> <span class="nav-text">三、比较过滤器</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#3-1-%E6%AF%94%E8%BE%83%E8%BF%90%E7%AE%97%E7%AC%A6"><span class="nav-number">5.3.1.</span> <span class="nav-text">3.1 比较运算符</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#3-2-%E6%AF%94%E8%BE%83%E5%99%A8"><span class="nav-number">5.3.2.</span> <span class="nav-text">3.2 比较器</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#3-3-%E6%AF%94%E8%BE%83%E8%BF%87%E6%BB%A4%E5%99%A8%E7%A7%8D%E7%B1%BB"><span class="nav-number">5.3.3.</span> <span class="nav-text">3.3 比较过滤器种类</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#3-4-DependentColumnFilter"><span class="nav-number">5.3.4.</span> <span class="nav-text">3.4 DependentColumnFilter</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%9B%9B%E3%80%81%E4%B8%93%E7%94%A8%E8%BF%87%E6%BB%A4%E5%99%A8"><span class="nav-number">5.4.</span> <span class="nav-text">四、专用过滤器</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#4-1-%E5%8D%95%E5%88%97%E5%88%97%E5%80%BC%E8%BF%87%E6%BB%A4%E5%99%A8-SingleColumnValueFilter"><span class="nav-number">5.4.1.</span> <span class="nav-text">4.1 单列列值过滤器 (SingleColumnValueFilter)</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#4-2-%E5%8D%95%E5%88%97%E5%88%97%E5%80%BC%E6%8E%92%E9%99%A4%E5%99%A8-SingleColumnValueExcludeFilter"><span class="nav-number">5.4.2.</span> <span class="nav-text">4.2 单列列值排除器 (SingleColumnValueExcludeFilter)</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#4-3-%E8%A1%8C%E9%94%AE%E5%89%8D%E7%BC%80%E8%BF%87%E6%BB%A4%E5%99%A8-PrefixFilter"><span class="nav-number">5.4.3.</span> <span class="nav-text">4.3 行键前缀过滤器 (PrefixFilter)</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#4-4-%E5%88%97%E5%90%8D%E5%89%8D%E7%BC%80%E8%BF%87%E6%BB%A4%E5%99%A8-ColumnPrefixFilter"><span class="nav-number">5.4.4.</span> <span class="nav-text">4.4 列名前缀过滤器 (ColumnPrefixFilter)</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#4-5-%E5%88%86%E9%A1%B5%E8%BF%87%E6%BB%A4%E5%99%A8-PageFilter"><span class="nav-number">5.4.5.</span> <span class="nav-text">4.5 分页过滤器 (PageFilter)</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#4-6-%E6%97%B6%E9%97%B4%E6%88%B3%E8%BF%87%E6%BB%A4%E5%99%A8-TimestampsFilter"><span class="nav-number">5.4.6.</span> <span class="nav-text">4.6 时间戳过滤器 (TimestampsFilter)</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#4-7-%E9%A6%96%E6%AC%A1%E8%A1%8C%E9%94%AE%E8%BF%87%E6%BB%A4%E5%99%A8-FirstKeyOnlyFilter"><span class="nav-number">5.4.7.</span> <span class="nav-text">4.7 首次行键过滤器 (FirstKeyOnlyFilter)</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E4%BA%94%E3%80%81%E5%8C%85%E8%A3%85%E8%BF%87%E6%BB%A4%E5%99%A8"><span class="nav-number">5.5.</span> <span class="nav-text">五、包装过滤器</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#5-1-SkipFilter%E8%BF%87%E6%BB%A4%E5%99%A8"><span class="nav-number">5.5.1.</span> <span class="nav-text">5.1 SkipFilter过滤器</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#5-2-WhileMatchFilter%E8%BF%87%E6%BB%A4%E5%99%A8"><span class="nav-number">5.5.2.</span> <span class="nav-text">5.2 WhileMatchFilter过滤器</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%85%AD%E3%80%81FilterList"><span class="nav-number">5.6.</span> <span class="nav-text">六、FilterList</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%8F%82%E8%80%83%E8%B5%84%E6%96%99-3"><span class="nav-number">5.7.</span> <span class="nav-text">参考资料</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E5%8F%82%E8%80%83"><span class="nav-number">6.</span> <span class="nav-text">参考</span></a></li></ol></div>
       </div>
       <!--/noindex-->
 
@@ -1380,6 +943,25 @@
 
   
 
+<link rel="stylesheet" href="//cdn.jsdelivr.net/npm/gitalk@1/dist/gitalk.min.css">
+
+<script>
+NexT.utils.loadComments(document.querySelector('#gitalk-container'), () => {
+  NexT.utils.getScript('//cdn.jsdelivr.net/npm/gitalk@1/dist/gitalk.min.js', () => {
+    var gitalk = new Gitalk({
+      clientID    : 'e26b1eec8da027069747',
+      clientSecret: '48d14ef26caf77c5a7154a3c0cf08d66f6d21549',
+      repo        : 'BlogComments',
+      owner       : 'RealTommyHu',
+      admin       : ['RealTommyHu'],
+      id          : '21c5490cfbc2a98eb2809b056c532cd8',
+        language: 'zh-CN',
+      distractionFreeMode: true
+    });
+    gitalk.render('gitalk-container');
+  }, window.Gitalk);
+});
+</script>
 
 </body>
 </html>
