@@ -20,30 +20,49 @@
     var CONFIG = {"hostname":"example.com","root":"/","scheme":"Muse","version":"7.8.0","exturl":false,"sidebar":{"position":"left","display":"always","padding":18,"offset":12,"onmobile":false},"copycode":{"enable":false,"show_result":false,"style":null},"back2top":{"enable":true,"sidebar":false,"scrollpercent":false},"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"algolia":{"hits":{"per_page":10},"labels":{"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}},"localsearch":{"enable":false,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}}};
   </script>
 
-  <meta name="description" content="写点东西">
-<meta property="og:type" content="website">
-<meta property="og:title" content="TommyHu的技术小馆">
-<meta property="og:url" content="http://example.com/index.html">
+  <meta name="description" content="中物院APP架构师招聘要求：  熟悉TOGAF、BPMN、UML、IBM LOVEM、ARIS EPC等企业架构和业务流程建模知识； 掌握ARIS、Axure等建模和原型设计工具； 掌握DDD、RBAC等设计知识； 掌握Linux平台上的Java编程、MySQL数据库和Spring Boot或MyBatis等常用框架。   企业架构和业务流程建模TOGAF（The Open Group Arch">
+<meta property="og:type" content="article">
+<meta property="og:title" content="APP架构核心技术">
+<meta property="og:url" content="http://example.com/2021/09/18/APP%E6%9E%B6%E6%9E%84%E6%A0%B8%E5%BF%83%E6%8A%80%E6%9C%AF/index.html">
 <meta property="og:site_name" content="TommyHu的技术小馆">
-<meta property="og:description" content="写点东西">
+<meta property="og:description" content="中物院APP架构师招聘要求：  熟悉TOGAF、BPMN、UML、IBM LOVEM、ARIS EPC等企业架构和业务流程建模知识； 掌握ARIS、Axure等建模和原型设计工具； 掌握DDD、RBAC等设计知识； 掌握Linux平台上的Java编程、MySQL数据库和Spring Boot或MyBatis等常用框架。   企业架构和业务流程建模TOGAF（The Open Group Arch">
 <meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="http://example.com/2021/09/18/APP%E6%9E%B6%E6%9E%84%E6%A0%B8%E5%BF%83%E6%8A%80%E6%9C%AF/TOGAF_ADM.jpg">
+<meta property="og:image" content="http://example.com/2021/09/18/APP%E6%9E%B6%E6%9E%84%E6%A0%B8%E5%BF%83%E6%8A%80%E6%9C%AF/%E4%BC%81%E4%B8%9A%E6%9E%B6%E6%9E%84%E7%BB%84%E6%88%90.jpg">
+<meta property="og:image" content="http://example.com/2021/09/18/APP%E6%9E%B6%E6%9E%84%E6%A0%B8%E5%BF%83%E6%8A%80%E6%9C%AF/BPMN%E4%B8%9A%E5%8A%A1%E6%B5%81%E7%A8%8B%E5%BB%BA%E6%A8%A1%E4%B8%8E%E6%A0%87%E6%B3%A8_%E5%BC%80%E5%A7%8B%E4%BA%8B%E4%BB%B6.jpg">
+<meta property="og:image" content="http://example.com/2021/09/18/APP%E6%9E%B6%E6%9E%84%E6%A0%B8%E5%BF%83%E6%8A%80%E6%9C%AF/BPMN%E4%B8%9A%E5%8A%A1%E6%B5%81%E7%A8%8B%E5%BB%BA%E6%A8%A1%E4%B8%8E%E6%A0%87%E6%B3%A8_%E4%B8%AD%E9%97%B4%E4%BA%8B%E4%BB%B6.jpg">
+<meta property="og:image" content="http://example.com/2021/09/18/APP%E6%9E%B6%E6%9E%84%E6%A0%B8%E5%BF%83%E6%8A%80%E6%9C%AF/BPMN%E4%B8%9A%E5%8A%A1%E6%B5%81%E7%A8%8B%E5%BB%BA%E6%A8%A1%E4%B8%8E%E6%A0%87%E6%B3%A8_%E7%BB%93%E6%9D%9F%E4%BA%8B%E4%BB%B6.jpg">
+<meta property="og:image" content="http://example.com/2021/09/18/APP%E6%9E%B6%E6%9E%84%E6%A0%B8%E5%BF%83%E6%8A%80%E6%9C%AF/BPMN%E4%B8%9A%E5%8A%A1%E6%B5%81%E7%A8%8B%E5%BB%BA%E6%A8%A1%E4%B8%8E%E6%A0%87%E6%B3%A8_%E4%BB%BB%E5%8A%A1.jpg">
+<meta property="og:image" content="http://example.com/2021/09/18/APP%E6%9E%B6%E6%9E%84%E6%A0%B8%E5%BF%83%E6%8A%80%E6%9C%AF/BPMN%E4%B8%9A%E5%8A%A1%E6%B5%81%E7%A8%8B%E5%BB%BA%E6%A8%A1%E4%B8%8E%E6%A0%87%E6%B3%A8_%E5%AD%90%E6%B5%81%E7%A8%8B.jpg">
+<meta property="og:image" content="http://example.com/2021/09/18/APP%E6%9E%B6%E6%9E%84%E6%A0%B8%E5%BF%83%E6%8A%80%E6%9C%AF/BPMN%E4%B8%9A%E5%8A%A1%E6%B5%81%E7%A8%8B%E5%BB%BA%E6%A8%A1%E4%B8%8E%E6%A0%87%E6%B3%A8_%E8%B0%83%E7%94%A8%E6%B4%BB%E5%8A%A8.jpg">
+<meta property="og:image" content="http://example.com/2021/09/18/APP%E6%9E%B6%E6%9E%84%E6%A0%B8%E5%BF%83%E6%8A%80%E6%9C%AF/BPMN%E4%B8%9A%E5%8A%A1%E6%B5%81%E7%A8%8B%E5%BB%BA%E6%A8%A1%E4%B8%8E%E6%A0%87%E6%B3%A8_%E7%BD%91%E5%85%B3.jpg">
+<meta property="og:image" content="http://example.com/2021/09/18/APP%E6%9E%B6%E6%9E%84%E6%A0%B8%E5%BF%83%E6%8A%80%E6%9C%AF/BPMN%E4%B8%9A%E5%8A%A1%E6%B5%81%E7%A8%8B%E5%BB%BA%E6%A8%A1%E4%B8%8E%E6%A0%87%E6%B3%A8_%E6%95%B0%E6%8D%AE.jpg">
+<meta property="og:image" content="http://example.com/2021/09/18/APP%E6%9E%B6%E6%9E%84%E6%A0%B8%E5%BF%83%E6%8A%80%E6%9C%AF/BPMN%E4%B8%9A%E5%8A%A1%E6%B5%81%E7%A8%8B%E5%BB%BA%E6%A8%A1%E4%B8%8E%E6%A0%87%E6%B3%A8_%E8%BF%9E%E6%8E%A5%E5%AF%B9%E8%B1%A1.jpg">
+<meta property="og:image" content="http://example.com/2021/09/18/APP%E6%9E%B6%E6%9E%84%E6%A0%B8%E5%BF%83%E6%8A%80%E6%9C%AF/BPMN%E4%B8%9A%E5%8A%A1%E6%B5%81%E7%A8%8B%E5%BB%BA%E6%A8%A1%E4%B8%8E%E6%A0%87%E6%B3%A8_%E6%B1%A0%E5%AD%90.jpg">
+<meta property="og:image" content="http://example.com/2021/09/18/APP%E6%9E%B6%E6%9E%84%E6%A0%B8%E5%BF%83%E6%8A%80%E6%9C%AF/BPMN%E4%B8%9A%E5%8A%A1%E6%B5%81%E7%A8%8B%E5%BB%BA%E6%A8%A1%E4%B8%8E%E6%A0%87%E6%B3%A8_%E6%B3%B3%E9%81%93.jpg">
+<meta property="og:image" content="http://example.com/2021/09/18/APP%E6%9E%B6%E6%9E%84%E6%A0%B8%E5%BF%83%E6%8A%80%E6%9C%AF/BPMN%E4%B8%9A%E5%8A%A1%E6%B5%81%E7%A8%8B%E5%BB%BA%E6%A8%A1%E4%B8%8E%E6%A0%87%E6%B3%A8_%E7%BB%84.jpg">
+<meta property="og:image" content="http://example.com/2021/09/18/APP%E6%9E%B6%E6%9E%84%E6%A0%B8%E5%BF%83%E6%8A%80%E6%9C%AF/BPMN%E4%B8%9A%E5%8A%A1%E6%B5%81%E7%A8%8B%E5%BB%BA%E6%A8%A1%E4%B8%8E%E6%A0%87%E6%B3%A8_%E6%96%87%E5%AD%97%E6%B3%A8%E9%87%8A.jpg">
+<meta property="article:published_time" content="2021-09-18T07:24:05.000Z">
+<meta property="article:modified_time" content="2021-09-22T14:51:15.199Z">
 <meta property="article:author" content="Tommy Hu">
+<meta property="article:tag" content="UML">
 <meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="http://example.com/2021/09/18/APP%E6%9E%B6%E6%9E%84%E6%A0%B8%E5%BF%83%E6%8A%80%E6%9C%AF/TOGAF_ADM.jpg">
 
-<link rel="canonical" href="http://example.com/">
+<link rel="canonical" href="http://example.com/2021/09/18/APP%E6%9E%B6%E6%9E%84%E6%A0%B8%E5%BF%83%E6%8A%80%E6%9C%AF/">
 
 
 <script id="page-configurations">
   // https://hexo.io/docs/variables.html
   CONFIG.page = {
     sidebar: "",
-    isHome : true,
-    isPost : false,
+    isHome : false,
+    isPost : true,
     lang   : 'zh-CN'
   };
 </script>
 
-  <title>TommyHu的技术小馆</title>
+  <title>APP架构核心技术 | TommyHu的技术小馆</title>
   
 
 
@@ -152,9 +171,10 @@
         <div class="content-wrap">
           
 
-          <div class="content index posts-expand">
+          <div class="content post posts-expand">
             
-      
+
+    
   
   
   <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
@@ -170,10 +190,9 @@
       <meta itemprop="name" content="TommyHu的技术小馆">
     </span>
       <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          
-            <a href="/2021/09/18/APP%E6%9E%B6%E6%9E%84%E6%A0%B8%E5%BF%83%E6%8A%80%E6%9C%AF/" class="post-title-link" itemprop="url">APP架构核心技术</a>
-        </h2>
+        <h1 class="post-title" itemprop="name headline">
+          APP架构核心技术
+        </h1>
 
         <div class="post-meta">
             <span class="post-meta-item">
@@ -212,7 +231,7 @@
     <div class="post-body" itemprop="articleBody">
 
       
-          <blockquote>
+        <blockquote>
 <p>中物院APP架构师招聘要求：</p>
 <ol>
 <li>熟悉TOGAF、BPMN、UML、IBM LOVEM、ARIS EPC等企业架构和业务流程建模知识；</li>
@@ -281,583 +300,40 @@
 <h4 id="5-2-文字注释（Text-Annotation）"><a href="#5-2-文字注释（Text-Annotation）" class="headerlink" title="5.2 文字注释（Text Annotation）"></a>5.2 文字注释（Text Annotation）</h4><p>提供一些附加性的文本信息给流程图的阅读者。</p>
 <p><img src="/2021/09/18/APP%E6%9E%B6%E6%9E%84%E6%A0%B8%E5%BF%83%E6%8A%80%E6%9C%AF/BPMN%E4%B8%9A%E5%8A%A1%E6%B5%81%E7%A8%8B%E5%BB%BA%E6%A8%A1%E4%B8%8E%E6%A0%87%E6%B3%A8_%E6%96%87%E5%AD%97%E6%B3%A8%E9%87%8A.jpg"></p>
 <h2 id="UML（Unified-Modeling-Language）统一建模语言"><a href="#UML（Unified-Modeling-Language）统一建模语言" class="headerlink" title="UML（Unified Modeling Language）统一建模语言"></a>UML（Unified Modeling Language）统一建模语言</h2>
-      
     </div>
 
     
     
     
+
       <footer class="post-footer">
-        <div class="post-eof"></div>
-      </footer>
-  </article>
-  
-  
-  
+          <div class="post-tags">
+              <a href="/tags/UML/" rel="tag"># UML</a>
+          </div>
 
-      
-  
-  
-  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
-    <link itemprop="mainEntityOfPage" href="http://example.com/2021/05/10/HBase%E6%A0%B8%E5%BF%83%E6%8A%80%E6%9C%AF/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/avatar.gif">
-      <meta itemprop="name" content="Tommy Hu">
-      <meta itemprop="description" content="写点东西">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="TommyHu的技术小馆">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          
-            <a href="/2021/05/10/HBase%E6%A0%B8%E5%BF%83%E6%8A%80%E6%9C%AF/" class="post-title-link" itemprop="url">HBase核心技术</a>
-        </h2>
-
-        <div class="post-meta">
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-calendar"></i>
-              </span>
-              <span class="post-meta-item-text">发表于</span>
-
-              <time title="创建时间：2021-05-10 09:44:48" itemprop="dateCreated datePublished" datetime="2021-05-10T09:44:48+08:00">2021-05-10</time>
-            </span>
-              <span class="post-meta-item">
-                <span class="post-meta-item-icon">
-                  <i class="far fa-calendar-check"></i>
-                </span>
-                <span class="post-meta-item-text">更新于</span>
-                <time title="修改时间：2021-05-16 23:04:14" itemprop="dateModified" datetime="2021-05-16T23:04:14+08:00">2021-05-16</time>
-              </span>
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-folder"></i>
-              </span>
-              <span class="post-meta-item-text">分类于</span>
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/%E5%A4%A7%E6%95%B0%E6%8D%AE/" itemprop="url" rel="index"><span itemprop="name">大数据</span></a>
-                </span>
-            </span>
-
-          
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-          <h1 id="HBase简介"><a href="#HBase简介" class="headerlink" title="HBase简介"></a>HBase简介</h1><h2 id="一、Hadoop的局限"><a href="#一、Hadoop的局限" class="headerlink" title="一、Hadoop的局限"></a>一、Hadoop的局限</h2><p>HBase 是一个构建在 Hadoop 文件系统之上的面向列的数据库管理系统。</p>
-<p><img src="/2021/05/10/HBase%E6%A0%B8%E5%BF%83%E6%8A%80%E6%9C%AF/hbase.jpg" alt="hbase.jpg"></p>
-          <!--noindex-->
-            <div class="post-button">
-              <a class="btn" href="/2021/05/10/HBase%E6%A0%B8%E5%BF%83%E6%8A%80%E6%9C%AF/#more" rel="contents">
-                阅读全文 &raquo;
-              </a>
-            </div>
-          <!--/noindex-->
         
-      
-    </div>
 
-    
-    
-    
-      <footer class="post-footer">
-        <div class="post-eof"></div>
-      </footer>
-  </article>
-  
-  
-  
 
-      
-  
-  
-  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
-    <link itemprop="mainEntityOfPage" href="http://example.com/2021/05/07/Hive%E6%A0%B8%E5%BF%83%E6%8A%80%E6%9C%AF/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/avatar.gif">
-      <meta itemprop="name" content="Tommy Hu">
-      <meta itemprop="description" content="写点东西">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="TommyHu的技术小馆">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          
-            <a href="/2021/05/07/Hive%E6%A0%B8%E5%BF%83%E6%8A%80%E6%9C%AF/" class="post-title-link" itemprop="url">Hive核心技术</a>
-        </h2>
-
-        <div class="post-meta">
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-calendar"></i>
-              </span>
-              <span class="post-meta-item-text">发表于</span>
-
-              <time title="创建时间：2021-05-07 09:06:04" itemprop="dateCreated datePublished" datetime="2021-05-07T09:06:04+08:00">2021-05-07</time>
-            </span>
-              <span class="post-meta-item">
-                <span class="post-meta-item-icon">
-                  <i class="far fa-calendar-check"></i>
-                </span>
-                <span class="post-meta-item-text">更新于</span>
-                <time title="修改时间：2021-05-09 23:29:04" itemprop="dateModified" datetime="2021-05-09T23:29:04+08:00">2021-05-09</time>
-              </span>
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-folder"></i>
-              </span>
-              <span class="post-meta-item-text">分类于</span>
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/%E5%A4%A7%E6%95%B0%E6%8D%AE/" itemprop="url" rel="index"><span itemprop="name">大数据</span></a>
-                </span>
-            </span>
-
-          
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-          <h1 id="Hive简介及核心概念"><a href="#Hive简介及核心概念" class="headerlink" title="Hive简介及核心概念"></a>Hive简介及核心概念</h1><h2 id="一、简介"><a href="#一、简介" class="headerlink" title="一、简介"></a>一、简介</h2><p>Hive 是一个构建在 Hadoop 之上的数据仓库，它可以将结构化的数据文件映射成表，并提供类 SQL 查询功能，用于查询的 SQL 语句会被转化为 MapReduce 作业，然后提交到 Hadoop 上运行。</p>
-          <!--noindex-->
-            <div class="post-button">
-              <a class="btn" href="/2021/05/07/Hive%E6%A0%B8%E5%BF%83%E6%8A%80%E6%9C%AF/#more" rel="contents">
-                阅读全文 &raquo;
-              </a>
-            </div>
-          <!--/noindex-->
         
-      
+    <div class="post-nav">
+      <div class="post-nav-item">
+    <a href="/2021/05/10/HBase%E6%A0%B8%E5%BF%83%E6%8A%80%E6%9C%AF/" rel="prev" title="HBase核心技术">
+      <i class="fa fa-chevron-left"></i> HBase核心技术
+    </a></div>
+      <div class="post-nav-item"></div>
     </div>
-
-    
-    
-    
-      <footer class="post-footer">
-        <div class="post-eof"></div>
       </footer>
+    
   </article>
   
   
-  
-
-      
-  
-  
-  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
-    <link itemprop="mainEntityOfPage" href="http://example.com/2021/04/30/Flink%E6%A0%B8%E5%BF%83%E6%8A%80%E6%9C%AF/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/avatar.gif">
-      <meta itemprop="name" content="Tommy Hu">
-      <meta itemprop="description" content="写点东西">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="TommyHu的技术小馆">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          
-            <a href="/2021/04/30/Flink%E6%A0%B8%E5%BF%83%E6%8A%80%E6%9C%AF/" class="post-title-link" itemprop="url">Flink核心技术</a>
-        </h2>
-
-        <div class="post-meta">
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-calendar"></i>
-              </span>
-              <span class="post-meta-item-text">发表于</span>
-
-              <time title="创建时间：2021-04-30 14:53:02" itemprop="dateCreated datePublished" datetime="2021-04-30T14:53:02+08:00">2021-04-30</time>
-            </span>
-              <span class="post-meta-item">
-                <span class="post-meta-item-icon">
-                  <i class="far fa-calendar-check"></i>
-                </span>
-                <span class="post-meta-item-text">更新于</span>
-                <time title="修改时间：2021-05-06 21:55:11" itemprop="dateModified" datetime="2021-05-06T21:55:11+08:00">2021-05-06</time>
-              </span>
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-folder"></i>
-              </span>
-              <span class="post-meta-item-text">分类于</span>
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/%E5%A4%A7%E6%95%B0%E6%8D%AE/" itemprop="url" rel="index"><span itemprop="name">大数据</span></a>
-                </span>
-            </span>
-
-          
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-          <h1 id="Flink核心概念概述"><a href="#Flink核心概念概述" class="headerlink" title="Flink核心概念概述"></a>Flink核心概念概述</h1><h2 id="一、Flink简介"><a href="#一、Flink简介" class="headerlink" title="一、Flink简介"></a>一、Flink简介</h2><p>Flink是分布式流处理框架，对有界和无界的数据流进行高效的处理。核心是流处理，也支持批处理，将批处理看成是流处理的一种特殊情况，即：数据流是有明确界限的。而Spark Streaming核心是批处理，将流处理看成是批处理的一种特殊情况，即：把数据流进行极小粒度的拆分，拆分成多个微批处理。</p>
-          <!--noindex-->
-            <div class="post-button">
-              <a class="btn" href="/2021/04/30/Flink%E6%A0%B8%E5%BF%83%E6%8A%80%E6%9C%AF/#more" rel="contents">
-                阅读全文 &raquo;
-              </a>
-            </div>
-          <!--/noindex-->
-        
-      
-    </div>
-
-    
-    
-    
-      <footer class="post-footer">
-        <div class="post-eof"></div>
-      </footer>
-  </article>
-  
-  
-  
-
-      
-  
-  
-  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
-    <link itemprop="mainEntityOfPage" href="http://example.com/2021/04/25/Ubuntu%E9%85%8D%E7%BD%AEJava%E7%8E%AF%E5%A2%83/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/avatar.gif">
-      <meta itemprop="name" content="Tommy Hu">
-      <meta itemprop="description" content="写点东西">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="TommyHu的技术小馆">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          
-            <a href="/2021/04/25/Ubuntu%E9%85%8D%E7%BD%AEJava%E7%8E%AF%E5%A2%83/" class="post-title-link" itemprop="url">Ubuntu配置Java环境</a>
-        </h2>
-
-        <div class="post-meta">
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-calendar"></i>
-              </span>
-              <span class="post-meta-item-text">发表于</span>
-              
-
-              <time title="创建时间：2021-04-25 16:12:48 / 修改时间：17:06:31" itemprop="dateCreated datePublished" datetime="2021-04-25T16:12:48+08:00">2021-04-25</time>
-            </span>
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-folder"></i>
-              </span>
-              <span class="post-meta-item-text">分类于</span>
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/%E8%BF%90%E7%BB%B4/" itemprop="url" rel="index"><span itemprop="name">运维</span></a>
-                </span>
-            </span>
-
-          
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-          <p>Ubuntu18.04下安装jdk8。</p>
-          <!--noindex-->
-            <div class="post-button">
-              <a class="btn" href="/2021/04/25/Ubuntu%E9%85%8D%E7%BD%AEJava%E7%8E%AF%E5%A2%83/#more" rel="contents">
-                阅读全文 &raquo;
-              </a>
-            </div>
-          <!--/noindex-->
-        
-      
-    </div>
-
-    
-    
-    
-      <footer class="post-footer">
-        <div class="post-eof"></div>
-      </footer>
-  </article>
-  
-  
-  
-
-      
-  
-  
-  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
-    <link itemprop="mainEntityOfPage" href="http://example.com/2021/04/25/Ubuntu%E6%9B%B4%E6%8D%A2%E5%9B%BD%E5%86%85%E6%BA%90%E6%8F%90%E9%AB%98%E5%8C%85%E7%AE%A1%E7%90%86%E5%99%A8%E4%B8%8B%E8%BD%BD%E9%80%9F%E5%BA%A6/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/avatar.gif">
-      <meta itemprop="name" content="Tommy Hu">
-      <meta itemprop="description" content="写点东西">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="TommyHu的技术小馆">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          
-            <a href="/2021/04/25/Ubuntu%E6%9B%B4%E6%8D%A2%E5%9B%BD%E5%86%85%E6%BA%90%E6%8F%90%E9%AB%98%E5%8C%85%E7%AE%A1%E7%90%86%E5%99%A8%E4%B8%8B%E8%BD%BD%E9%80%9F%E5%BA%A6/" class="post-title-link" itemprop="url">Ubuntu更换国内源提高包管理器下载速度</a>
-        </h2>
-
-        <div class="post-meta">
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-calendar"></i>
-              </span>
-              <span class="post-meta-item-text">发表于</span>
-              
-
-              <time title="创建时间：2021-04-25 15:49:57 / 修改时间：16:28:46" itemprop="dateCreated datePublished" datetime="2021-04-25T15:49:57+08:00">2021-04-25</time>
-            </span>
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-folder"></i>
-              </span>
-              <span class="post-meta-item-text">分类于</span>
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/%E8%BF%90%E7%BB%B4/" itemprop="url" rel="index"><span itemprop="name">运维</span></a>
-                </span>
-            </span>
-
-          
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-          <h1 id="问题"><a href="#问题" class="headerlink" title="问题"></a>问题</h1><p>Ubuntu配置的默认源并不是国内的服务器，下载更新软件都比较慢。</p>
-          <!--noindex-->
-            <div class="post-button">
-              <a class="btn" href="/2021/04/25/Ubuntu%E6%9B%B4%E6%8D%A2%E5%9B%BD%E5%86%85%E6%BA%90%E6%8F%90%E9%AB%98%E5%8C%85%E7%AE%A1%E7%90%86%E5%99%A8%E4%B8%8B%E8%BD%BD%E9%80%9F%E5%BA%A6/#more" rel="contents">
-                阅读全文 &raquo;
-              </a>
-            </div>
-          <!--/noindex-->
-        
-      
-    </div>
-
-    
-    
-    
-      <footer class="post-footer">
-        <div class="post-eof"></div>
-      </footer>
-  </article>
-  
-  
-  
-
-      
-  
-  
-  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
-    <link itemprop="mainEntityOfPage" href="http://example.com/2021/04/23/Spark%E6%A0%B8%E5%BF%83%E6%8A%80%E6%9C%AF/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/avatar.gif">
-      <meta itemprop="name" content="Tommy Hu">
-      <meta itemprop="description" content="写点东西">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="TommyHu的技术小馆">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          
-            <a href="/2021/04/23/Spark%E6%A0%B8%E5%BF%83%E6%8A%80%E6%9C%AF/" class="post-title-link" itemprop="url">Spark核心技术</a>
-        </h2>
-
-        <div class="post-meta">
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-calendar"></i>
-              </span>
-              <span class="post-meta-item-text">发表于</span>
-
-              <time title="创建时间：2021-04-23 21:43:46" itemprop="dateCreated datePublished" datetime="2021-04-23T21:43:46+08:00">2021-04-23</time>
-            </span>
-              <span class="post-meta-item">
-                <span class="post-meta-item-icon">
-                  <i class="far fa-calendar-check"></i>
-                </span>
-                <span class="post-meta-item-text">更新于</span>
-                <time title="修改时间：2021-04-28 22:42:56" itemprop="dateModified" datetime="2021-04-28T22:42:56+08:00">2021-04-28</time>
-              </span>
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-folder"></i>
-              </span>
-              <span class="post-meta-item-text">分类于</span>
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/%E5%A4%A7%E6%95%B0%E6%8D%AE/" itemprop="url" rel="index"><span itemprop="name">大数据</span></a>
-                </span>
-            </span>
-
-          
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-          <h1 id="Spark简介"><a href="#Spark简介" class="headerlink" title="Spark简介"></a>Spark简介</h1><h2 id="一、简介"><a href="#一、简介" class="headerlink" title="一、简介"></a>一、简介</h2><p>Apache Spark是继 MapReduce 之后，最为广泛使用的分布式计算框架。相对于 MapReduce 的批处理计算，可以带来上百倍的性能提升。</p>
-          <!--noindex-->
-            <div class="post-button">
-              <a class="btn" href="/2021/04/23/Spark%E6%A0%B8%E5%BF%83%E6%8A%80%E6%9C%AF/#more" rel="contents">
-                阅读全文 &raquo;
-              </a>
-            </div>
-          <!--/noindex-->
-        
-      
-    </div>
-
-    
-    
-    
-      <footer class="post-footer">
-        <div class="post-eof"></div>
-      </footer>
-  </article>
-  
-  
-  
-
-      
-  
-  
-  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
-    <link itemprop="mainEntityOfPage" href="http://example.com/2021/04/22/%E9%80%9A%E8%BF%87GithubPages%E5%92%8C%E9%9D%99%E6%80%81%E7%AB%99%E7%82%B9%E7%94%9F%E6%88%90%E6%A1%86%E6%9E%B6Hexo%E6%90%AD%E5%BB%BA%E5%8D%9A%E5%AE%A2/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/avatar.gif">
-      <meta itemprop="name" content="Tommy Hu">
-      <meta itemprop="description" content="写点东西">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="TommyHu的技术小馆">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          
-            <a href="/2021/04/22/%E9%80%9A%E8%BF%87GithubPages%E5%92%8C%E9%9D%99%E6%80%81%E7%AB%99%E7%82%B9%E7%94%9F%E6%88%90%E6%A1%86%E6%9E%B6Hexo%E6%90%AD%E5%BB%BA%E5%8D%9A%E5%AE%A2/" class="post-title-link" itemprop="url">通过GithubPages和静态站点生成框架Hexo搭建博客</a>
-        </h2>
-
-        <div class="post-meta">
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-calendar"></i>
-              </span>
-              <span class="post-meta-item-text">发表于</span>
-
-              <time title="创建时间：2021-04-22 22:27:39" itemprop="dateCreated datePublished" datetime="2021-04-22T22:27:39+08:00">2021-04-22</time>
-            </span>
-              <span class="post-meta-item">
-                <span class="post-meta-item-icon">
-                  <i class="far fa-calendar-check"></i>
-                </span>
-                <span class="post-meta-item-text">更新于</span>
-                <time title="修改时间：2021-04-25 15:15:57" itemprop="dateModified" datetime="2021-04-25T15:15:57+08:00">2021-04-25</time>
-              </span>
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-folder"></i>
-              </span>
-              <span class="post-meta-item-text">分类于</span>
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/%E5%8D%9A%E5%AE%A2/" itemprop="url" rel="index"><span itemprop="name">博客</span></a>
-                </span>
-            </span>
-
-          
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-          <h1 id="概念简介"><a href="#概念简介" class="headerlink" title="概念简介"></a>概念简介</h1><h2 id="什么是Github-Pages？"><a href="#什么是Github-Pages？" class="headerlink" title="什么是Github Pages？"></a>什么是Github Pages？</h2><p>“GitHub Pages是GitHub提供的一个网页寄存服务，于2008年推出。可以用于存放静态网页，包括博客、项目文档甚至整本书。Jekyll软件可以用于将文档转换成静态网页，该软件提供了将网页上传到GitHub Pages的功能。一般GitHub Pages的网站使用github.io的子域名，但是用户也可以使用第三方域名。” <p align="right">——维基百科</p></p>
-          <!--noindex-->
-            <div class="post-button">
-              <a class="btn" href="/2021/04/22/%E9%80%9A%E8%BF%87GithubPages%E5%92%8C%E9%9D%99%E6%80%81%E7%AB%99%E7%82%B9%E7%94%9F%E6%88%90%E6%A1%86%E6%9E%B6Hexo%E6%90%AD%E5%BB%BA%E5%8D%9A%E5%AE%A2/#more" rel="contents">
-                阅读全文 &raquo;
-              </a>
-            </div>
-          <!--/noindex-->
-        
-      
-    </div>
-
-    
-    
-    
-      <footer class="post-footer">
-        <div class="post-eof"></div>
-      </footer>
-  </article>
-  
-  
-  
-
-
   
 
 
 
           </div>
           
+    <div class="comments" id="gitalk-container"></div>
 
 <script>
   window.addEventListener('tabs:register', () => {
@@ -904,6 +380,7 @@
 
       <!--noindex-->
       <div class="post-toc-wrap sidebar-panel">
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#%E4%BC%81%E4%B8%9A%E6%9E%B6%E6%9E%84%E5%92%8C%E4%B8%9A%E5%8A%A1%E6%B5%81%E7%A8%8B%E5%BB%BA%E6%A8%A1"><span class="nav-number">1.</span> <span class="nav-text">企业架构和业务流程建模</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#TOGAF%EF%BC%88The-Open-Group-Architecture-Framework%EF%BC%89%E5%BC%80%E6%94%BE%E7%BB%84%E4%BD%93%E7%B3%BB%E7%BB%93%E6%9E%84%E6%A1%86%E6%9E%B6"><span class="nav-number">1.1.</span> <span class="nav-text">TOGAF（The Open Group Architecture Framework）开放组体系结构框架</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%BC%95%E8%A8%80"><span class="nav-number">1.1.1.</span> <span class="nav-text">引言</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%A6%82%E8%A6%81"><span class="nav-number">1.1.2.</span> <span class="nav-text">概要</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%8E%86%E5%8F%B2"><span class="nav-number">1.1.3.</span> <span class="nav-text">历史</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E8%AF%A6%E6%83%85"><span class="nav-number">1.1.4.</span> <span class="nav-text">详情</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#BPMN%EF%BC%88Business-Process-Modeling-Notation%EF%BC%89%E4%B8%9A%E5%8A%A1%E6%B5%81%E7%A8%8B%E5%BB%BA%E6%A8%A1%E4%B8%8E%E6%A0%87%E6%B3%A8"><span class="nav-number">1.2.</span> <span class="nav-text">BPMN（Business Process Modeling Notation）业务流程建模与标注</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#1-%E6%B5%81%E5%AF%B9%E8%B1%A1%EF%BC%88Flow-Objects%EF%BC%89"><span class="nav-number">1.2.1.</span> <span class="nav-text">1 流对象（Flow Objects）</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#1-1-%E4%BA%8B%E4%BB%B6%EF%BC%88Events%EF%BC%89"><span class="nav-number">1.2.1.1.</span> <span class="nav-text">1.1 事件（Events）</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#%EF%BC%881%EF%BC%89%E5%BC%80%E5%A7%8B%E4%BA%8B%E4%BB%B6"><span class="nav-number">1.2.1.1.1.</span> <span class="nav-text">（1）开始事件</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#%EF%BC%882%EF%BC%89%E4%B8%AD%E9%97%B4%E4%BA%8B%E4%BB%B6-Intermediate-event"><span class="nav-number">1.2.1.1.2.</span> <span class="nav-text">（2）中间事件 Intermediate event</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#%EF%BC%883%EF%BC%89%E7%BB%93%E6%9D%9F%E4%BA%8B%E4%BB%B6-End-Event"><span class="nav-number">1.2.1.1.3.</span> <span class="nav-text">（3）结束事件 End Event</span></a></li></ol></li><li class="nav-item nav-level-4"><a class="nav-link" href="#1-1-%E6%B4%BB%E5%8A%A8%EF%BC%88Activities%EF%BC%89"><span class="nav-number">1.2.1.2.</span> <span class="nav-text">1.1 活动（Activities）</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#%EF%BC%881%EF%BC%89Tasks-%E4%BB%BB%E5%8A%A1"><span class="nav-number">1.2.1.2.1.</span> <span class="nav-text">（1）Tasks 任务</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#%EF%BC%882%EF%BC%89Sub-Processes-%E5%AD%90%E6%B5%81%E7%A8%8B"><span class="nav-number">1.2.1.2.2.</span> <span class="nav-text">（2）Sub-Processes 子流程</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#%EF%BC%883%EF%BC%89Call-Activity-%E8%B0%83%E7%94%A8%E6%B4%BB%E5%8A%A8"><span class="nav-number">1.2.1.2.3.</span> <span class="nav-text">（3）Call Activity 调用活动</span></a></li></ol></li><li class="nav-item nav-level-4"><a class="nav-link" href="#1-3-%E7%BD%91%E5%85%B3%EF%BC%88Gateways%EF%BC%89"><span class="nav-number">1.2.1.3.</span> <span class="nav-text">1.3 网关（Gateways）</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#2-%E6%95%B0%E6%8D%AE%EF%BC%88Data%EF%BC%89"><span class="nav-number">1.2.2.</span> <span class="nav-text">2 数据（Data）</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#3-%E8%BF%9E%E6%8E%A5%E5%AF%B9%E8%B1%A1%EF%BC%88Connecting-Objects%EF%BC%89"><span class="nav-number">1.2.3.</span> <span class="nav-text">3 连接对象（Connecting Objects）</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#4-%E6%B3%B3%E9%81%93%EF%BC%88Swimlanes%EF%BC%89"><span class="nav-number">1.2.4.</span> <span class="nav-text">4 泳道（Swimlanes）</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#4-1-%E6%B1%A0%E5%AD%90%EF%BC%88Pools%EF%BC%89"><span class="nav-number">1.2.4.1.</span> <span class="nav-text">4.1 池子（Pools）</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#4-2-%E6%B3%B3%E9%81%93%EF%BC%88Lanes%EF%BC%89"><span class="nav-number">1.2.4.2.</span> <span class="nav-text">4.2 泳道（Lanes）</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#5-%E5%B7%A5%E4%BB%B6%EF%BC%88Artifacts%EF%BC%89"><span class="nav-number">1.2.5.</span> <span class="nav-text">5 工件（Artifacts）</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#5-1-%E7%BB%84%EF%BC%88Group%EF%BC%89"><span class="nav-number">1.2.5.1.</span> <span class="nav-text">5.1 组（Group）</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#5-2-%E6%96%87%E5%AD%97%E6%B3%A8%E9%87%8A%EF%BC%88Text-Annotation%EF%BC%89"><span class="nav-number">1.2.5.2.</span> <span class="nav-text">5.2 文字注释（Text Annotation）</span></a></li></ol></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#UML%EF%BC%88Unified-Modeling-Language%EF%BC%89%E7%BB%9F%E4%B8%80%E5%BB%BA%E6%A8%A1%E8%AF%AD%E8%A8%80"><span class="nav-number">1.3.</span> <span class="nav-text">UML（Unified Modeling Language）统一建模语言</span></a></li></ol></li></ol></div>
       </div>
       <!--/noindex-->
 
@@ -1017,6 +494,25 @@
 
   
 
+<link rel="stylesheet" href="//cdn.jsdelivr.net/npm/gitalk@1/dist/gitalk.min.css">
+
+<script>
+NexT.utils.loadComments(document.querySelector('#gitalk-container'), () => {
+  NexT.utils.getScript('//cdn.jsdelivr.net/npm/gitalk@1/dist/gitalk.min.js', () => {
+    var gitalk = new Gitalk({
+      clientID    : 'e26b1eec8da027069747',
+      clientSecret: '48d14ef26caf77c5a7154a3c0cf08d66f6d21549',
+      repo        : 'BlogComments',
+      owner       : 'RealTommyHu',
+      admin       : ['RealTommyHu'],
+      id          : '1dc93baf52aba86b26735b22b5e5f90d',
+        language: 'zh-CN',
+      distractionFreeMode: true
+    });
+    gitalk.render('gitalk-container');
+  }, window.Gitalk);
+});
+</script>
 
 </body>
 </html>
