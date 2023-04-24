@@ -20,12 +20,12 @@
     var CONFIG = {"hostname":"example.com","root":"/","scheme":"Muse","version":"7.8.0","exturl":false,"sidebar":{"position":"left","display":"always","padding":18,"offset":12,"onmobile":false},"copycode":{"enable":false,"show_result":false,"style":null},"back2top":{"enable":true,"sidebar":false,"scrollpercent":false},"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"algolia":{"hits":{"per_page":10},"labels":{"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}},"localsearch":{"enable":false,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}}};
   </script>
 
-  <meta name="description" content="中物院APP架构师招聘要求：  熟悉TOGAF、BPMN、UML、IBM LOVEM、ARIS EPC等企业架构和业务流程建模知识； 掌握ARIS、Axure等建模和原型设计工具； 掌握DDD、RBAC等设计知识； 掌握Linux平台上的Java编程、MySQL数据库和Spring Boot或MyBatis等常用框架。">
+  <meta name="description" content="APP架构师能力要求，例：  熟悉TOGAF、BPMN、UML、IBM LOVEM、ARIS EPC等企业架构和业务流程建模知识； 掌握ARIS、Axure等建模和原型设计工具； 掌握DDD、RBAC等设计知识； 掌握Linux平台上的Java编程、MySQL数据库和Spring Boot或MyBatis等常用框架。">
 <meta property="og:type" content="article">
 <meta property="og:title" content="APP架构核心技术">
 <meta property="og:url" content="http://example.com/2021/09/18/APP%E6%9E%B6%E6%9E%84%E6%A0%B8%E5%BF%83%E6%8A%80%E6%9C%AF/index.html">
 <meta property="og:site_name" content="TommyHu的技术小馆">
-<meta property="og:description" content="中物院APP架构师招聘要求：  熟悉TOGAF、BPMN、UML、IBM LOVEM、ARIS EPC等企业架构和业务流程建模知识； 掌握ARIS、Axure等建模和原型设计工具； 掌握DDD、RBAC等设计知识； 掌握Linux平台上的Java编程、MySQL数据库和Spring Boot或MyBatis等常用框架。">
+<meta property="og:description" content="APP架构师能力要求，例：  熟悉TOGAF、BPMN、UML、IBM LOVEM、ARIS EPC等企业架构和业务流程建模知识； 掌握ARIS、Axure等建模和原型设计工具； 掌握DDD、RBAC等设计知识； 掌握Linux平台上的Java编程、MySQL数据库和Spring Boot或MyBatis等常用框架。">
 <meta property="og:locale" content="zh_CN">
 <meta property="og:image" content="http://example.com/2021/09/18/APP%E6%9E%B6%E6%9E%84%E6%A0%B8%E5%BF%83%E6%8A%80%E6%9C%AF/TOGAF_ADM.jpg">
 <meta property="og:image" content="http://example.com/2021/09/18/APP%E6%9E%B6%E6%9E%84%E6%A0%B8%E5%BF%83%E6%8A%80%E6%9C%AF/%E4%BC%81%E4%B8%9A%E6%9E%B6%E6%9E%84%E7%BB%84%E6%88%90.jpg">
@@ -42,8 +42,20 @@
 <meta property="og:image" content="http://example.com/2021/09/18/APP%E6%9E%B6%E6%9E%84%E6%A0%B8%E5%BF%83%E6%8A%80%E6%9C%AF/BPMN%E4%B8%9A%E5%8A%A1%E6%B5%81%E7%A8%8B%E5%BB%BA%E6%A8%A1%E4%B8%8E%E6%A0%87%E6%B3%A8_%E6%B3%B3%E9%81%93.jpg">
 <meta property="og:image" content="http://example.com/2021/09/18/APP%E6%9E%B6%E6%9E%84%E6%A0%B8%E5%BF%83%E6%8A%80%E6%9C%AF/BPMN%E4%B8%9A%E5%8A%A1%E6%B5%81%E7%A8%8B%E5%BB%BA%E6%A8%A1%E4%B8%8E%E6%A0%87%E6%B3%A8_%E7%BB%84.jpg">
 <meta property="og:image" content="http://example.com/2021/09/18/APP%E6%9E%B6%E6%9E%84%E6%A0%B8%E5%BF%83%E6%8A%80%E6%9C%AF/BPMN%E4%B8%9A%E5%8A%A1%E6%B5%81%E7%A8%8B%E5%BB%BA%E6%A8%A1%E4%B8%8E%E6%A0%87%E6%B3%A8_%E6%96%87%E5%AD%97%E6%B3%A8%E9%87%8A.jpg">
+<meta property="og:image" content="http://example.com/2021/09/18/APP%E6%9E%B6%E6%9E%84%E6%A0%B8%E5%BF%83%E6%8A%80%E6%9C%AF/UML%E5%9F%BA%E6%9C%AC%E8%A1%A8%E7%A4%BA%E6%B3%95_%E7%B1%BB%E6%B3%A8%E9%87%8A.jpg">
+<meta property="og:image" content="http://example.com/2021/09/18/APP%E6%9E%B6%E6%9E%84%E6%A0%B8%E5%BF%83%E6%8A%80%E6%9C%AF/UML%E5%9F%BA%E6%9C%AC%E8%A1%A8%E7%A4%BA%E6%B3%95_%E5%AF%B9%E8%B1%A1%E8%A1%A8%E7%A4%BA%E6%B3%95.jpg">
+<meta property="og:image" content="http://example.com/2021/09/18/APP%E6%9E%B6%E6%9E%84%E6%A0%B8%E5%BF%83%E6%8A%80%E6%9C%AF/UML%E5%9F%BA%E6%9C%AC%E8%A1%A8%E7%A4%BA%E6%B3%95_%E6%8E%A5%E5%8F%A3%E8%A1%A8%E7%A4%BA%E6%B3%95.jpg">
+<meta property="og:image" content="http://example.com/2021/09/18/APP%E6%9E%B6%E6%9E%84%E6%A0%B8%E5%BF%83%E6%8A%80%E6%9C%AF/UML%E5%9F%BA%E6%9C%AC%E8%A1%A8%E7%A4%BA%E6%B3%95_%E5%8D%8F%E4%BD%9C%E8%A1%A8%E7%A4%BA%E6%B3%95.jpg">
+<meta property="og:image" content="http://example.com/2021/09/18/APP%E6%9E%B6%E6%9E%84%E6%A0%B8%E5%BF%83%E6%8A%80%E6%9C%AF/UML%E5%9F%BA%E6%9C%AC%E8%A1%A8%E7%A4%BA%E6%B3%95_%E7%94%A8%E4%BE%8B%E8%A1%A8%E7%A4%BA%E6%B3%95.jpg">
+<meta property="og:image" content="http://example.com/2021/09/18/APP%E6%9E%B6%E6%9E%84%E6%A0%B8%E5%BF%83%E6%8A%80%E6%9C%AF/UML%E5%9F%BA%E6%9C%AC%E8%A1%A8%E7%A4%BA%E6%B3%95_%E8%A7%92%E8%89%B2%E8%A1%A8%E7%A4%BA%E6%B3%95.jpg">
+<meta property="og:image" content="http://example.com/2021/09/18/APP%E6%9E%B6%E6%9E%84%E6%A0%B8%E5%BF%83%E6%8A%80%E6%9C%AF/UML%E5%9F%BA%E6%9C%AC%E8%A1%A8%E7%A4%BA%E6%B3%95_%E5%88%9D%E5%A7%8B%E7%8A%B6%E6%80%81%E8%A1%A8%E7%A4%BA%E6%B3%95.jpg">
+<meta property="og:image" content="http://example.com/2021/09/18/APP%E6%9E%B6%E6%9E%84%E6%A0%B8%E5%BF%83%E6%8A%80%E6%9C%AF/UML%E5%9F%BA%E6%9C%AC%E8%A1%A8%E7%A4%BA%E6%B3%95_%E6%9C%80%E7%BB%88%E7%8A%B6%E6%80%81%E8%A1%A8%E7%A4%BA%E6%B3%95.jpg">
+<meta property="og:image" content="http://example.com/2021/09/18/APP%E6%9E%B6%E6%9E%84%E6%A0%B8%E5%BF%83%E6%8A%80%E6%9C%AF/UML%E5%9F%BA%E6%9C%AC%E8%A1%A8%E7%A4%BA%E6%B3%95_%E6%B4%BB%E5%8A%A8%E7%B1%BB%E8%A1%A8%E7%A4%BA%E6%B3%95.jpg">
+<meta property="og:image" content="http://example.com/2021/09/18/APP%E6%9E%B6%E6%9E%84%E6%A0%B8%E5%BF%83%E6%8A%80%E6%9C%AF/UML%E5%9F%BA%E6%9C%AC%E8%A1%A8%E7%A4%BA%E6%B3%95_%E5%85%83%E4%BB%B6%E8%A1%A8%E7%A4%BA%E6%B3%95.jpg">
+<meta property="og:image" content="http://example.com/2021/09/18/APP%E6%9E%B6%E6%9E%84%E6%A0%B8%E5%BF%83%E6%8A%80%E6%9C%AF/UML%E5%9F%BA%E6%9C%AC%E8%A1%A8%E7%A4%BA%E6%B3%95_%E8%8A%82%E7%82%B9%E8%A1%A8%E7%A4%BA%E6%B3%95.jpg">
+<meta property="og:image" content="http://example.com/2021/09/18/APP%E6%9E%B6%E6%9E%84%E6%A0%B8%E5%BF%83%E6%8A%80%E6%9C%AF/%E5%BB%BA%E6%A8%A1%E5%92%8C%E5%8E%9F%E5%9E%8B%E8%AE%BE%E8%AE%A1%E5%B7%A5%E5%85%B7_ARIS%E6%A8%A1%E5%9E%8B.jpg">
 <meta property="article:published_time" content="2021-09-18T07:24:05.000Z">
-<meta property="article:modified_time" content="2021-09-22T14:54:08.865Z">
+<meta property="article:modified_time" content="2023-04-24T17:47:05.818Z">
 <meta property="article:author" content="Tommy Hu">
 <meta property="article:tag" content="UML">
 <meta name="twitter:card" content="summary">
@@ -208,7 +220,7 @@
                   <i class="far fa-calendar-check"></i>
                 </span>
                 <span class="post-meta-item-text">更新于</span>
-                <time title="修改时间：2021-09-22 22:54:08" itemprop="dateModified" datetime="2021-09-22T22:54:08+08:00">2021-09-22</time>
+                <time title="修改时间：2023-04-25 01:47:05" itemprop="dateModified" datetime="2023-04-25T01:47:05+08:00">2023-04-25</time>
               </span>
             <span class="post-meta-item">
               <span class="post-meta-item-icon">
@@ -232,7 +244,7 @@
 
       
         <blockquote>
-<p>中物院APP架构师招聘要求：</p>
+<p>APP架构师能力要求，例：</p>
 <ol>
 <li>熟悉TOGAF、BPMN、UML、IBM LOVEM、ARIS EPC等企业架构和业务流程建模知识；</li>
 <li>掌握ARIS、Axure等建模和原型设计工具；</li>
@@ -301,7 +313,103 @@
 <p><img src="/2021/09/18/APP%E6%9E%B6%E6%9E%84%E6%A0%B8%E5%BF%83%E6%8A%80%E6%9C%AF/BPMN%E4%B8%9A%E5%8A%A1%E6%B5%81%E7%A8%8B%E5%BB%BA%E6%A8%A1%E4%B8%8E%E6%A0%87%E6%B3%A8_%E7%BB%84.jpg"></p>
 <h4 id="5-2-文字注释（Text-Annotation）"><a href="#5-2-文字注释（Text-Annotation）" class="headerlink" title="5.2 文字注释（Text Annotation）"></a>5.2 文字注释（Text Annotation）</h4><p>提供一些附加性的文本信息给流程图的阅读者。</p>
 <p><img src="/2021/09/18/APP%E6%9E%B6%E6%9E%84%E6%A0%B8%E5%BF%83%E6%8A%80%E6%9C%AF/BPMN%E4%B8%9A%E5%8A%A1%E6%B5%81%E7%A8%8B%E5%BB%BA%E6%A8%A1%E4%B8%8E%E6%A0%87%E6%B3%A8_%E6%96%87%E5%AD%97%E6%B3%A8%E9%87%8A.jpg"></p>
-<h2 id="UML（Unified-Modeling-Language）统一建模语言"><a href="#UML（Unified-Modeling-Language）统一建模语言" class="headerlink" title="UML（Unified Modeling Language）统一建模语言"></a>UML（Unified Modeling Language）统一建模语言</h2>
+<h2 id="UML（Unified-Modeling-Language）统一建模语言"><a href="#UML（Unified-Modeling-Language）统一建模语言" class="headerlink" title="UML（Unified Modeling Language）统一建模语言"></a>UML（Unified Modeling Language）统一建模语言</h2><h3 id="UML-能帮我们做什么？"><a href="#UML-能帮我们做什么？" class="headerlink" title="UML 能帮我们做什么？"></a>UML 能帮我们做什么？</h3><p>我们在进行项目的时候，通过使用 UML 的面向对象图的方式来更明确、清晰的表达项目中的架设思想、项目结构、执行顺序等一些逻辑思维。 </p>
+<h3 id="UML-介绍："><a href="#UML-介绍：" class="headerlink" title="UML 介绍："></a>UML 介绍：</h3><p>　1997年，OMG 组织（Object Management Group对象管理组织）发布了统一建模语言（Unified Modeling Language，UML）。UML 是一种编制软件蓝图的标准化语言，它的目标之一就是为开发团队提供标准通用的设计语言来开发和构建计算机应用。UML 提出了一套 IT 专业人员期待多年的统一的标准建模符号。通过使用UML，这些人员能够阅读和交流系统架构和设计规划。UML支持面向对象的技术，能够准确的方便地表达面向对象的概念，体现面向对象的分析和设计风格.</p>
+<h3 id="UML统一了什么？"><a href="#UML统一了什么？" class="headerlink" title="UML统一了什么？"></a>UML统一了什么？</h3><p>UML 统一了Booch、OMT、OOSE和其他面向对象方法所涉及的基本概念和建模符号。</p>
+<h3 id="UML-模型："><a href="#UML-模型：" class="headerlink" title="UML 模型："></a>UML 模型：</h3><p>UML的模型主要有三部分构成：</p>
+<ul>
+<li>事物(Things)：UML模型中最基本的构成元素，是具有代表性的成分的抽象</li>
+<li>关系(Relationships)：关系把事物紧密联系在一起</li>
+<li>图(Diagrams )：图是事物和关系的可视化表示</li>
+</ul>
+<h3 id="UML-特点："><a href="#UML-特点：" class="headerlink" title="UML 特点："></a>UML 特点：</h3><p>面向对象<br>可视化，表达能力强<br>独立于过程<br>独立于程序设计<br>容易掌握使用 </p>
+<h3 id="UML概述"><a href="#UML概述" class="headerlink" title="UML概述"></a>UML概述</h3><h4 id="什么是-UML？"><a href="#什么是-UML？" class="headerlink" title="什么是 UML？"></a>什么是 UML？</h4><p>UML 是 OMG 在1997年1月提出了创建由对象管理组和 UML1.0 规范草案；</p>
+<p>UML 是一种为面向对象开发系统的产品进行说明、可视化、和编制文档的标准语言；</p>
+<p>UML 作为一种模型语言，它使开发人员专注于建立产品的模型和结构，而不是选用什么程序语言和算法实现；</p>
+<p>UML 是不同于其他常见的编程语言，如 C + +，Java中，COBOL 等，它是一种绘画语言，用来做软件蓝图；</p>
+<p>UML 不是一种编程语言，但工具可用于生成各种语言的代码中使用 UML 图；</p>
+<p>UML 可以用来建模非软件系统的处理流程，以及像在一个制造单元等.</p>
+<h4 id="UML-的目标："><a href="#UML-的目标：" class="headerlink" title="UML 的目标："></a>UML 的目标：</h4><p>UML 的目标是定义一些通用的建模语言并对这些建模语言做出简单的说明，这样可以让建模者理解与使用。UML 也是为普通人和有兴趣的人而开发的系统，它可以是一个软件或者使用非软件，它必须是明确的。我们不将 UML 作为一个开发方法，而是随着流程做一个成功的系统。</p>
+<p>现在我们可以明确的了解 UML 的目标就是 UML 被定义为一个简单的建模机制，帮助我们按照实际情况或者按照我们需要的样式对系统进行可视化；提供一种详细说明系统的结构或行为的方法；给出一个指导系统构造的模板；对我们所做出的决策进行文档化。</p>
+<h4 id="UML-面向对象的概念："><a href="#UML-面向对象的概念：" class="headerlink" title="UML 面向对象的概念："></a>UML 面向对象的概念：</h4><p>面向对象 (Object Oriented,OO) 是软件开发方法，面向对象的概念和应用已超越了程序设计和软件开发。我们可以将 UML 描述为面向对象的分析和设计的继任者。</p>
+<p>一个对象中包含了数据和控制数据的方法，其中数据表示对象的状态，类描述的对象，他们也形成层次结构模型真实世界的系统。表示为继承层次结构，也可以以不同的方式按要求相关的类。</p>
+<p>对象是现实世界的实体存在我们周围像抽象，封装，继承，多态的基本概念，都可以使用 UML 表示。因此，UML 是强大到足以代表所有的概念存在于面向对象的分析和设计。 </p>
+<p>UML 图是面向对象的概念的表示，因此，学习 UML 之前，详细了解面向对象的概念就变得非常重要。</p>
+<p>以下是一些面向对象基本概念：</p>
+<ul>
+<li><p>对象: 对象代表一个实体的基本构建块.</p>
+</li>
+<li><p>类: 类是对象的蓝图.</p>
+</li>
+<li><p>抽象化: 抽象代表现实世界中实体的行为.</p>
+</li>
+<li><p>封装: 封装是将数据绑定在一起，并隐藏他们外部世界的机制。</p>
+</li>
+<li><p>继承: 继承是从现有的机制作出新的类。</p>
+</li>
+<li><p>多态性: 定义的机制来以不同的形式存在.</p>
+</li>
+</ul>
+<h4 id="UML教程"><a href="#UML教程" class="headerlink" title="UML教程"></a>UML教程</h4><h5 id="建模类型："><a href="#建模类型：" class="headerlink" title="建模类型："></a>建模类型：</h5><ul>
+<li>结构建模：捕捉静态的功能。<ul>
+<li>类图</li>
+<li>对象图</li>
+<li>部署图</li>
+<li>包图</li>
+<li>复合结构图</li>
+<li>组件图</li>
+</ul>
+</li>
+<li>行为建模：显示系统的动态性质。<ul>
+<li>活动图</li>
+<li>交互图</li>
+<li>用例图</li>
+</ul>
+</li>
+<li>架构建模：表示一个系统的总体框架。<ul>
+<li>包图</li>
+</ul>
+</li>
+</ul>
+<h5 id="UML基本表示法"><a href="#UML基本表示法" class="headerlink" title="UML基本表示法"></a>UML基本表示法</h5><p>UML是流行的图解符号。UML符号是最重要的建模元素。</p>
+<p>结构事物：</p>
+<ul>
+<li>类</li>
+<li>接口</li>
+<li>协作</li>
+<li>用例</li>
+<li>活动类</li>
+<li>组件</li>
+<li>节点</li>
+</ul>
+<p>类注释：下图表示的 UML 类，分为四个部分。顶端部分被用来命名类。第二个是用来显示类的属性。第三部分是用来描述由类执行的操作。第四部分是可选的显示附加组件。<br><img src="/2021/09/18/APP%E6%9E%B6%E6%9E%84%E6%A0%B8%E5%BF%83%E6%8A%80%E6%9C%AF/UML%E5%9F%BA%E6%9C%AC%E8%A1%A8%E7%A4%BA%E6%B3%95_%E7%B1%BB%E6%B3%A8%E9%87%8A.jpg"></p>
+<p>对象表示法：以同样的方式作为类，唯一的区别是有下划线的名称。</p>
+<p><img src="/2021/09/18/APP%E6%9E%B6%E6%9E%84%E6%A0%B8%E5%BF%83%E6%8A%80%E6%9C%AF/UML%E5%9F%BA%E6%9C%AC%E8%A1%A8%E7%A4%BA%E6%B3%95_%E5%AF%B9%E8%B1%A1%E8%A1%A8%E7%A4%BA%E6%B3%95.jpg"></p>
+<p>接口表示法：接口用圆来表示。用来描述功能，而不执行，像一个模板，定义不同的功能但不执行，当一个类实现了接口，也按要求实现功能。</p>
+<p><img src="/2021/09/18/APP%E6%9E%B6%E6%9E%84%E6%A0%B8%E5%BF%83%E6%8A%80%E6%9C%AF/UML%E5%9F%BA%E6%9C%AC%E8%A1%A8%E7%A4%BA%E6%B3%95_%E6%8E%A5%E5%8F%A3%E8%A1%A8%E7%A4%BA%E6%B3%95.jpg"></p>
+<p>协作表示法：协作表示职责，一般职责在一组。</p>
+<p><img src="/2021/09/18/APP%E6%9E%B6%E6%9E%84%E6%A0%B8%E5%BF%83%E6%8A%80%E6%9C%AF/UML%E5%9F%BA%E6%9C%AC%E8%A1%A8%E7%A4%BA%E6%B3%95_%E5%8D%8F%E4%BD%9C%E8%A1%A8%E7%A4%BA%E6%B3%95.jpg"></p>
+<p>用例表示法：用例是用来捕捉系统的高层次功能。</p>
+<p><img src="/2021/09/18/APP%E6%9E%B6%E6%9E%84%E6%A0%B8%E5%BF%83%E6%8A%80%E6%9C%AF/UML%E5%9F%BA%E6%9C%AC%E8%A1%A8%E7%A4%BA%E6%B3%95_%E7%94%A8%E4%BE%8B%E8%A1%A8%E7%A4%BA%E6%B3%95.jpg"></p>
+<p>角色表示法：某些内部或外部的与系统进行交互的实体，可以被定义为一个角色。</p>
+<p><img src="/2021/09/18/APP%E6%9E%B6%E6%9E%84%E6%A0%B8%E5%BF%83%E6%8A%80%E6%9C%AF/UML%E5%9F%BA%E6%9C%AC%E8%A1%A8%E7%A4%BA%E6%B3%95_%E8%A7%92%E8%89%B2%E8%A1%A8%E7%A4%BA%E6%B3%95.jpg"></p>
+<p>初始状态表示法：显示一个过程的起点。</p>
+<p><img src="/2021/09/18/APP%E6%9E%B6%E6%9E%84%E6%A0%B8%E5%BF%83%E6%8A%80%E6%9C%AF/UML%E5%9F%BA%E6%9C%AC%E8%A1%A8%E7%A4%BA%E6%B3%95_%E5%88%9D%E5%A7%8B%E7%8A%B6%E6%80%81%E8%A1%A8%E7%A4%BA%E6%B3%95.jpg"></p>
+<p>最终状态表示法：显示一个过程的终止点。</p>
+<p><img src="/2021/09/18/APP%E6%9E%B6%E6%9E%84%E6%A0%B8%E5%BF%83%E6%8A%80%E6%9C%AF/UML%E5%9F%BA%E6%9C%AC%E8%A1%A8%E7%A4%BA%E6%B3%95_%E6%9C%80%E7%BB%88%E7%8A%B6%E6%80%81%E8%A1%A8%E7%A4%BA%E6%B3%95.jpg"></p>
+<p>活动类表示法：活动类一般是用来描述一个系统的并发行为。</p>
+<p><img src="/2021/09/18/APP%E6%9E%B6%E6%9E%84%E6%A0%B8%E5%BF%83%E6%8A%80%E6%9C%AF/UML%E5%9F%BA%E6%9C%AC%E8%A1%A8%E7%A4%BA%E6%B3%95_%E6%B4%BB%E5%8A%A8%E7%B1%BB%E8%A1%A8%E7%A4%BA%E6%B3%95.jpg"></p>
+<p>元件表示法：一个组件，元器件是用来表示系统的任何部分的 UML 图。</p>
+<p><img src="/2021/09/18/APP%E6%9E%B6%E6%9E%84%E6%A0%B8%E5%BF%83%E6%8A%80%E6%9C%AF/UML%E5%9F%BA%E6%9C%AC%E8%A1%A8%E7%A4%BA%E6%B3%95_%E5%85%83%E4%BB%B6%E8%A1%A8%E7%A4%BA%E6%B3%95.jpg"></p>
+<p>节点表示法：一个节点表示一个物理的系统组件。节点用来表示物理系统的一部分，如服务器，网络等。</p>
+<p><img src="/2021/09/18/APP%E6%9E%B6%E6%9E%84%E6%A0%B8%E5%BF%83%E6%8A%80%E6%9C%AF/UML%E5%9F%BA%E6%9C%AC%E8%A1%A8%E7%A4%BA%E6%B3%95_%E8%8A%82%E7%82%B9%E8%A1%A8%E7%A4%BA%E6%B3%95.jpg"></p>
+<p>行为事物：动态部分是UML中最重要的元素之一</p>
+<p>相互作用</p>
+<h1 id="建模和原型设计工具-ARIS模型"><a href="#建模和原型设计工具-ARIS模型" class="headerlink" title="建模和原型设计工具-ARIS模型"></a>建模和原型设计工具-ARIS模型</h1><p>ARIS模型是德国Scheer教授提出的一种面向过程的、集成化的信息系统模型框架。ARIS结构是从过程链模型抽取、发展而来的。</p>
+<h2 id="简介"><a href="#简介" class="headerlink" title="简介"></a>简介</h2><p>在ARIS概念中，“过程”是由起始事件和终止事件定义的。过程的对象可以是物质的转变过程，也可以是信息的转变过程。在ARIS结构中，控制视图是ARIS区别于其它建模框架的重要特征，被用来记录和维护数据视图、组织视图和功能视图之间的关系，而组织、数据、功能视图的发展过程是相对独立的；面向系统的生命周期，ARIS定义了需求定义、设计说明和实施描述三个建模层次。为减少结构的复杂性以及冗余，ARIS还对过程链模型做了简化，更加关注信息的转变，舍弃与信息过程无关的因素，利用分阶段的或者程序化的模型来减少描述视图相互之间的关系。例如：真实的物质转变过程、物质转变过程中人的行为、所需的物料及设备，都以“环境条件”的形式出现在信息描述中，从而，从信息过程的角度看，生产过程不再是物料、人力和生产设备的使用，而是生产过程中数据的交换，这个信息过程的操作还涉及：过程计划、能力规划、生产进度控制等。</p>
+<h2 id="发展"><a href="#发展" class="headerlink" title="发展"></a>发展</h2><p>ARIS有一套标准的、可相互集成的软件工具集支持ARIS建模及仿真分析，并可与SAP R/3（由德国SAP公司所研创）等企业资源计划系统（ERP）商业套件集成在一起，提供BPR（Business Process Reengineering，业务流程重组）、ERP系统实施、企业流程监控及持续改进等一体化的解决方案。ARIS成为目前世界上极具影响力的建模框架。</p>
+<p><img src="/2021/09/18/APP%E6%9E%B6%E6%9E%84%E6%A0%B8%E5%BF%83%E6%8A%80%E6%9C%AF/%E5%BB%BA%E6%A8%A1%E5%92%8C%E5%8E%9F%E5%9E%8B%E8%AE%BE%E8%AE%A1%E5%B7%A5%E5%85%B7_ARIS%E6%A8%A1%E5%9E%8B.jpg"></p>
+
     </div>
 
     
@@ -382,7 +490,7 @@
 
       <!--noindex-->
       <div class="post-toc-wrap sidebar-panel">
-          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#%E4%BC%81%E4%B8%9A%E6%9E%B6%E6%9E%84%E5%92%8C%E4%B8%9A%E5%8A%A1%E6%B5%81%E7%A8%8B%E5%BB%BA%E6%A8%A1"><span class="nav-number">1.</span> <span class="nav-text">企业架构和业务流程建模</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#TOGAF%EF%BC%88The-Open-Group-Architecture-Framework%EF%BC%89%E5%BC%80%E6%94%BE%E7%BB%84%E4%BD%93%E7%B3%BB%E7%BB%93%E6%9E%84%E6%A1%86%E6%9E%B6"><span class="nav-number">1.1.</span> <span class="nav-text">TOGAF（The Open Group Architecture Framework）开放组体系结构框架</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%BC%95%E8%A8%80"><span class="nav-number">1.1.1.</span> <span class="nav-text">引言</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%A6%82%E8%A6%81"><span class="nav-number">1.1.2.</span> <span class="nav-text">概要</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%8E%86%E5%8F%B2"><span class="nav-number">1.1.3.</span> <span class="nav-text">历史</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E8%AF%A6%E6%83%85"><span class="nav-number">1.1.4.</span> <span class="nav-text">详情</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#BPMN%EF%BC%88Business-Process-Modeling-Notation%EF%BC%89%E4%B8%9A%E5%8A%A1%E6%B5%81%E7%A8%8B%E5%BB%BA%E6%A8%A1%E4%B8%8E%E6%A0%87%E6%B3%A8"><span class="nav-number">1.2.</span> <span class="nav-text">BPMN（Business Process Modeling Notation）业务流程建模与标注</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#1-%E6%B5%81%E5%AF%B9%E8%B1%A1%EF%BC%88Flow-Objects%EF%BC%89"><span class="nav-number">1.2.1.</span> <span class="nav-text">1 流对象（Flow Objects）</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#1-1-%E4%BA%8B%E4%BB%B6%EF%BC%88Events%EF%BC%89"><span class="nav-number">1.2.1.1.</span> <span class="nav-text">1.1 事件（Events）</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#%EF%BC%881%EF%BC%89%E5%BC%80%E5%A7%8B%E4%BA%8B%E4%BB%B6"><span class="nav-number">1.2.1.1.1.</span> <span class="nav-text">（1）开始事件</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#%EF%BC%882%EF%BC%89%E4%B8%AD%E9%97%B4%E4%BA%8B%E4%BB%B6-Intermediate-event"><span class="nav-number">1.2.1.1.2.</span> <span class="nav-text">（2）中间事件 Intermediate event</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#%EF%BC%883%EF%BC%89%E7%BB%93%E6%9D%9F%E4%BA%8B%E4%BB%B6-End-Event"><span class="nav-number">1.2.1.1.3.</span> <span class="nav-text">（3）结束事件 End Event</span></a></li></ol></li><li class="nav-item nav-level-4"><a class="nav-link" href="#1-1-%E6%B4%BB%E5%8A%A8%EF%BC%88Activities%EF%BC%89"><span class="nav-number">1.2.1.2.</span> <span class="nav-text">1.1 活动（Activities）</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#%EF%BC%881%EF%BC%89Tasks-%E4%BB%BB%E5%8A%A1"><span class="nav-number">1.2.1.2.1.</span> <span class="nav-text">（1）Tasks 任务</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#%EF%BC%882%EF%BC%89Sub-Processes-%E5%AD%90%E6%B5%81%E7%A8%8B"><span class="nav-number">1.2.1.2.2.</span> <span class="nav-text">（2）Sub-Processes 子流程</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#%EF%BC%883%EF%BC%89Call-Activity-%E8%B0%83%E7%94%A8%E6%B4%BB%E5%8A%A8"><span class="nav-number">1.2.1.2.3.</span> <span class="nav-text">（3）Call Activity 调用活动</span></a></li></ol></li><li class="nav-item nav-level-4"><a class="nav-link" href="#1-3-%E7%BD%91%E5%85%B3%EF%BC%88Gateways%EF%BC%89"><span class="nav-number">1.2.1.3.</span> <span class="nav-text">1.3 网关（Gateways）</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#2-%E6%95%B0%E6%8D%AE%EF%BC%88Data%EF%BC%89"><span class="nav-number">1.2.2.</span> <span class="nav-text">2 数据（Data）</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#3-%E8%BF%9E%E6%8E%A5%E5%AF%B9%E8%B1%A1%EF%BC%88Connecting-Objects%EF%BC%89"><span class="nav-number">1.2.3.</span> <span class="nav-text">3 连接对象（Connecting Objects）</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#4-%E6%B3%B3%E9%81%93%EF%BC%88Swimlanes%EF%BC%89"><span class="nav-number">1.2.4.</span> <span class="nav-text">4 泳道（Swimlanes）</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#4-1-%E6%B1%A0%E5%AD%90%EF%BC%88Pools%EF%BC%89"><span class="nav-number">1.2.4.1.</span> <span class="nav-text">4.1 池子（Pools）</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#4-2-%E6%B3%B3%E9%81%93%EF%BC%88Lanes%EF%BC%89"><span class="nav-number">1.2.4.2.</span> <span class="nav-text">4.2 泳道（Lanes）</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#5-%E5%B7%A5%E4%BB%B6%EF%BC%88Artifacts%EF%BC%89"><span class="nav-number">1.2.5.</span> <span class="nav-text">5 工件（Artifacts）</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#5-1-%E7%BB%84%EF%BC%88Group%EF%BC%89"><span class="nav-number">1.2.5.1.</span> <span class="nav-text">5.1 组（Group）</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#5-2-%E6%96%87%E5%AD%97%E6%B3%A8%E9%87%8A%EF%BC%88Text-Annotation%EF%BC%89"><span class="nav-number">1.2.5.2.</span> <span class="nav-text">5.2 文字注释（Text Annotation）</span></a></li></ol></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#UML%EF%BC%88Unified-Modeling-Language%EF%BC%89%E7%BB%9F%E4%B8%80%E5%BB%BA%E6%A8%A1%E8%AF%AD%E8%A8%80"><span class="nav-number">1.3.</span> <span class="nav-text">UML（Unified Modeling Language）统一建模语言</span></a></li></ol></li></ol></div>
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#%E4%BC%81%E4%B8%9A%E6%9E%B6%E6%9E%84%E5%92%8C%E4%B8%9A%E5%8A%A1%E6%B5%81%E7%A8%8B%E5%BB%BA%E6%A8%A1"><span class="nav-number">1.</span> <span class="nav-text">企业架构和业务流程建模</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#TOGAF%EF%BC%88The-Open-Group-Architecture-Framework%EF%BC%89%E5%BC%80%E6%94%BE%E7%BB%84%E4%BD%93%E7%B3%BB%E7%BB%93%E6%9E%84%E6%A1%86%E6%9E%B6"><span class="nav-number">1.1.</span> <span class="nav-text">TOGAF（The Open Group Architecture Framework）开放组体系结构框架</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%BC%95%E8%A8%80"><span class="nav-number">1.1.1.</span> <span class="nav-text">引言</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%A6%82%E8%A6%81"><span class="nav-number">1.1.2.</span> <span class="nav-text">概要</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%8E%86%E5%8F%B2"><span class="nav-number">1.1.3.</span> <span class="nav-text">历史</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E8%AF%A6%E6%83%85"><span class="nav-number">1.1.4.</span> <span class="nav-text">详情</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#BPMN%EF%BC%88Business-Process-Modeling-Notation%EF%BC%89%E4%B8%9A%E5%8A%A1%E6%B5%81%E7%A8%8B%E5%BB%BA%E6%A8%A1%E4%B8%8E%E6%A0%87%E6%B3%A8"><span class="nav-number">1.2.</span> <span class="nav-text">BPMN（Business Process Modeling Notation）业务流程建模与标注</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#1-%E6%B5%81%E5%AF%B9%E8%B1%A1%EF%BC%88Flow-Objects%EF%BC%89"><span class="nav-number">1.2.1.</span> <span class="nav-text">1 流对象（Flow Objects）</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#1-1-%E4%BA%8B%E4%BB%B6%EF%BC%88Events%EF%BC%89"><span class="nav-number">1.2.1.1.</span> <span class="nav-text">1.1 事件（Events）</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#%EF%BC%881%EF%BC%89%E5%BC%80%E5%A7%8B%E4%BA%8B%E4%BB%B6"><span class="nav-number">1.2.1.1.1.</span> <span class="nav-text">（1）开始事件</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#%EF%BC%882%EF%BC%89%E4%B8%AD%E9%97%B4%E4%BA%8B%E4%BB%B6-Intermediate-event"><span class="nav-number">1.2.1.1.2.</span> <span class="nav-text">（2）中间事件 Intermediate event</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#%EF%BC%883%EF%BC%89%E7%BB%93%E6%9D%9F%E4%BA%8B%E4%BB%B6-End-Event"><span class="nav-number">1.2.1.1.3.</span> <span class="nav-text">（3）结束事件 End Event</span></a></li></ol></li><li class="nav-item nav-level-4"><a class="nav-link" href="#1-1-%E6%B4%BB%E5%8A%A8%EF%BC%88Activities%EF%BC%89"><span class="nav-number">1.2.1.2.</span> <span class="nav-text">1.1 活动（Activities）</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#%EF%BC%881%EF%BC%89Tasks-%E4%BB%BB%E5%8A%A1"><span class="nav-number">1.2.1.2.1.</span> <span class="nav-text">（1）Tasks 任务</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#%EF%BC%882%EF%BC%89Sub-Processes-%E5%AD%90%E6%B5%81%E7%A8%8B"><span class="nav-number">1.2.1.2.2.</span> <span class="nav-text">（2）Sub-Processes 子流程</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#%EF%BC%883%EF%BC%89Call-Activity-%E8%B0%83%E7%94%A8%E6%B4%BB%E5%8A%A8"><span class="nav-number">1.2.1.2.3.</span> <span class="nav-text">（3）Call Activity 调用活动</span></a></li></ol></li><li class="nav-item nav-level-4"><a class="nav-link" href="#1-3-%E7%BD%91%E5%85%B3%EF%BC%88Gateways%EF%BC%89"><span class="nav-number">1.2.1.3.</span> <span class="nav-text">1.3 网关（Gateways）</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#2-%E6%95%B0%E6%8D%AE%EF%BC%88Data%EF%BC%89"><span class="nav-number">1.2.2.</span> <span class="nav-text">2 数据（Data）</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#3-%E8%BF%9E%E6%8E%A5%E5%AF%B9%E8%B1%A1%EF%BC%88Connecting-Objects%EF%BC%89"><span class="nav-number">1.2.3.</span> <span class="nav-text">3 连接对象（Connecting Objects）</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#4-%E6%B3%B3%E9%81%93%EF%BC%88Swimlanes%EF%BC%89"><span class="nav-number">1.2.4.</span> <span class="nav-text">4 泳道（Swimlanes）</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#4-1-%E6%B1%A0%E5%AD%90%EF%BC%88Pools%EF%BC%89"><span class="nav-number">1.2.4.1.</span> <span class="nav-text">4.1 池子（Pools）</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#4-2-%E6%B3%B3%E9%81%93%EF%BC%88Lanes%EF%BC%89"><span class="nav-number">1.2.4.2.</span> <span class="nav-text">4.2 泳道（Lanes）</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#5-%E5%B7%A5%E4%BB%B6%EF%BC%88Artifacts%EF%BC%89"><span class="nav-number">1.2.5.</span> <span class="nav-text">5 工件（Artifacts）</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#5-1-%E7%BB%84%EF%BC%88Group%EF%BC%89"><span class="nav-number">1.2.5.1.</span> <span class="nav-text">5.1 组（Group）</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#5-2-%E6%96%87%E5%AD%97%E6%B3%A8%E9%87%8A%EF%BC%88Text-Annotation%EF%BC%89"><span class="nav-number">1.2.5.2.</span> <span class="nav-text">5.2 文字注释（Text Annotation）</span></a></li></ol></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#UML%EF%BC%88Unified-Modeling-Language%EF%BC%89%E7%BB%9F%E4%B8%80%E5%BB%BA%E6%A8%A1%E8%AF%AD%E8%A8%80"><span class="nav-number">1.3.</span> <span class="nav-text">UML（Unified Modeling Language）统一建模语言</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#UML-%E8%83%BD%E5%B8%AE%E6%88%91%E4%BB%AC%E5%81%9A%E4%BB%80%E4%B9%88%EF%BC%9F"><span class="nav-number">1.3.1.</span> <span class="nav-text">UML 能帮我们做什么？</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#UML-%E4%BB%8B%E7%BB%8D%EF%BC%9A"><span class="nav-number">1.3.2.</span> <span class="nav-text">UML 介绍：</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#UML%E7%BB%9F%E4%B8%80%E4%BA%86%E4%BB%80%E4%B9%88%EF%BC%9F"><span class="nav-number">1.3.3.</span> <span class="nav-text">UML统一了什么？</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#UML-%E6%A8%A1%E5%9E%8B%EF%BC%9A"><span class="nav-number">1.3.4.</span> <span class="nav-text">UML 模型：</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#UML-%E7%89%B9%E7%82%B9%EF%BC%9A"><span class="nav-number">1.3.5.</span> <span class="nav-text">UML 特点：</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#UML%E6%A6%82%E8%BF%B0"><span class="nav-number">1.3.6.</span> <span class="nav-text">UML概述</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#%E4%BB%80%E4%B9%88%E6%98%AF-UML%EF%BC%9F"><span class="nav-number">1.3.6.1.</span> <span class="nav-text">什么是 UML？</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#UML-%E7%9A%84%E7%9B%AE%E6%A0%87%EF%BC%9A"><span class="nav-number">1.3.6.2.</span> <span class="nav-text">UML 的目标：</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#UML-%E9%9D%A2%E5%90%91%E5%AF%B9%E8%B1%A1%E7%9A%84%E6%A6%82%E5%BF%B5%EF%BC%9A"><span class="nav-number">1.3.6.3.</span> <span class="nav-text">UML 面向对象的概念：</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#UML%E6%95%99%E7%A8%8B"><span class="nav-number">1.3.6.4.</span> <span class="nav-text">UML教程</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#%E5%BB%BA%E6%A8%A1%E7%B1%BB%E5%9E%8B%EF%BC%9A"><span class="nav-number">1.3.6.4.1.</span> <span class="nav-text">建模类型：</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#UML%E5%9F%BA%E6%9C%AC%E8%A1%A8%E7%A4%BA%E6%B3%95"><span class="nav-number">1.3.6.4.2.</span> <span class="nav-text">UML基本表示法</span></a></li></ol></li></ol></li></ol></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E5%BB%BA%E6%A8%A1%E5%92%8C%E5%8E%9F%E5%9E%8B%E8%AE%BE%E8%AE%A1%E5%B7%A5%E5%85%B7-ARIS%E6%A8%A1%E5%9E%8B"><span class="nav-number">2.</span> <span class="nav-text">建模和原型设计工具-ARIS模型</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E7%AE%80%E4%BB%8B"><span class="nav-number">2.1.</span> <span class="nav-text">简介</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%8F%91%E5%B1%95"><span class="nav-number">2.2.</span> <span class="nav-text">发展</span></a></li></ol></li></ol></div>
       </div>
       <!--/noindex-->
 
@@ -436,7 +544,7 @@
 <div class="copyright">
   
   &copy; 
-  <span itemprop="copyrightYear">2021</span>
+  <span itemprop="copyrightYear">2023</span>
   <span class="with-love">
     <i class="fa fa-heart"></i>
   </span>
