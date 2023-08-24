@@ -20,12 +20,12 @@
     var CONFIG = {"hostname":"example.com","root":"/","scheme":"Muse","version":"7.8.0","exturl":false,"sidebar":{"position":"left","display":"always","padding":18,"offset":12,"onmobile":false},"copycode":{"enable":false,"show_result":false,"style":null},"back2top":{"enable":true,"sidebar":false,"scrollpercent":false},"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"algolia":{"hits":{"per_page":10},"labels":{"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}},"localsearch":{"enable":false,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}}};
   </script>
 
-  <meta name="description" content="概念RAID（Redundant Array of Independent Disks，独立磁盘冗余阵列）是一种通过将多个独立的物理硬盘组合在一起来提供更高性能、容量和冗余性的数据存储技术。其原理是在多个硬盘之间实现数据的分布存储，并根据不同的RAID级别提供冗余备份，以增加数据的可靠性。 基本原理RAID技术通过合理地组合独立的硬盘和数据处理策略，提供了更高的性能和可靠性，使数据存储系统更适合服">
+  <meta name="description" content="概念RAID（Redundant Array of Independent Disks，独立磁盘冗余阵列）是一种通过将多个独立的物理硬盘组合在一起来提供更高性能、容量和冗余性的数据存储技术。其原理是在多个硬盘之间实现数据的分布存储，并根据不同的RAID级别提供冗余备份，以增加数据的可靠性。">
 <meta property="og:type" content="article">
 <meta property="og:title" content="独立磁盘冗余阵列（RAID）概念及配置">
 <meta property="og:url" content="http://example.com/2023/08/24/%E7%8B%AC%E7%AB%8B%E7%A3%81%E7%9B%98%E5%86%97%E4%BD%99%E9%98%B5%E5%88%97%EF%BC%88RAID%EF%BC%89%E6%A6%82%E5%BF%B5%E5%8F%8A%E9%85%8D%E7%BD%AE/index.html">
 <meta property="og:site_name" content="TommyHu的技术小馆">
-<meta property="og:description" content="概念RAID（Redundant Array of Independent Disks，独立磁盘冗余阵列）是一种通过将多个独立的物理硬盘组合在一起来提供更高性能、容量和冗余性的数据存储技术。其原理是在多个硬盘之间实现数据的分布存储，并根据不同的RAID级别提供冗余备份，以增加数据的可靠性。 基本原理RAID技术通过合理地组合独立的硬盘和数据处理策略，提供了更高的性能和可靠性，使数据存储系统更适合服">
+<meta property="og:description" content="概念RAID（Redundant Array of Independent Disks，独立磁盘冗余阵列）是一种通过将多个独立的物理硬盘组合在一起来提供更高性能、容量和冗余性的数据存储技术。其原理是在多个硬盘之间实现数据的分布存储，并根据不同的RAID级别提供冗余备份，以增加数据的可靠性。">
 <meta property="og:locale" content="zh_CN">
 <meta property="og:image" content="http://example.com/2023/08/24/%E7%8B%AC%E7%AB%8B%E7%A3%81%E7%9B%98%E5%86%97%E4%BD%99%E9%98%B5%E5%88%97%EF%BC%88RAID%EF%BC%89%E6%A6%82%E5%BF%B5%E5%8F%8A%E9%85%8D%E7%BD%AE/raid0.png">
 <meta property="og:image" content="http://example.com/2023/08/24/%E7%8B%AC%E7%AB%8B%E7%A3%81%E7%9B%98%E5%86%97%E4%BD%99%E9%98%B5%E5%88%97%EF%BC%88RAID%EF%BC%89%E6%A6%82%E5%BF%B5%E5%8F%8A%E9%85%8D%E7%BD%AE/raid1.png">
@@ -35,7 +35,7 @@
 <meta property="og:image" content="http://example.com/2023/08/24/%E7%8B%AC%E7%AB%8B%E7%A3%81%E7%9B%98%E5%86%97%E4%BD%99%E9%98%B5%E5%88%97%EF%BC%88RAID%EF%BC%89%E6%A6%82%E5%BF%B5%E5%8F%8A%E9%85%8D%E7%BD%AE/raid50.png">
 <meta property="og:image" content="http://example.com/2023/08/24/%E7%8B%AC%E7%AB%8B%E7%A3%81%E7%9B%98%E5%86%97%E4%BD%99%E9%98%B5%E5%88%97%EF%BC%88RAID%EF%BC%89%E6%A6%82%E5%BF%B5%E5%8F%8A%E9%85%8D%E7%BD%AE/raid60.png">
 <meta property="article:published_time" content="2023-08-24T05:26:19.000Z">
-<meta property="article:modified_time" content="2023-08-24T10:39:48.817Z">
+<meta property="article:modified_time" content="2023-08-24T10:44:35.328Z">
 <meta property="article:author" content="Tommy Hu">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:image" content="http://example.com/2023/08/24/%E7%8B%AC%E7%AB%8B%E7%A3%81%E7%9B%98%E5%86%97%E4%BD%99%E9%98%B5%E5%88%97%EF%BC%88RAID%EF%BC%89%E6%A6%82%E5%BF%B5%E5%8F%8A%E9%85%8D%E7%BD%AE/raid0.png">
@@ -193,7 +193,7 @@
               <span class="post-meta-item-text">发表于</span>
               
 
-              <time title="创建时间：2023-08-24 13:26:19 / 修改时间：18:39:48" itemprop="dateCreated datePublished" datetime="2023-08-24T13:26:19+08:00">2023-08-24</time>
+              <time title="创建时间：2023-08-24 13:26:19 / 修改时间：18:44:35" itemprop="dateCreated datePublished" datetime="2023-08-24T13:26:19+08:00">2023-08-24</time>
             </span>
 
           
@@ -208,6 +208,8 @@
 
       
         <h1 id="概念"><a href="#概念" class="headerlink" title="概念"></a>概念</h1><p>RAID（Redundant Array of Independent Disks，独立磁盘冗余阵列）是一种通过将多个独立的物理硬盘组合在一起来提供更高性能、容量和冗余性的数据存储技术。其原理是在多个硬盘之间实现数据的分布存储，并根据不同的RAID级别提供冗余备份，以增加数据的可靠性。</p>
+<span id="more"></span>
+
 <h1 id="基本原理"><a href="#基本原理" class="headerlink" title="基本原理"></a>基本原理</h1><p>RAID技术通过合理地组合独立的硬盘和数据处理策略，提供了更高的性能和可靠性，使数据存储系统更适合服务器、存储设备和数据中心等环境。以下是RAID的一些基本原理：</p>
 <ol>
 <li><p><strong>条带化（Striping）</strong>：<br>RAID将数据分成一系列块，并将这些块依次存储在不同的物理磁盘上，从而实现数据的条带化存储。这使得数据可以并行地从多个磁盘读取或写入，从而提高了存取速度。</p>
