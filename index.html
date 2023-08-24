@@ -158,6 +158,439 @@
   
   
   <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="http://example.com/2023/08/24/%E7%8B%AC%E7%AB%8B%E7%A3%81%E7%9B%98%E5%86%97%E4%BD%99%E9%98%B5%E5%88%97%EF%BC%88RAID%EF%BC%89%E6%A6%82%E5%BF%B5%E5%8F%8A%E9%85%8D%E7%BD%AE/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="Tommy Hu">
+      <meta itemprop="description" content="写点东西">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="TommyHu的技术小馆">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/2023/08/24/%E7%8B%AC%E7%AB%8B%E7%A3%81%E7%9B%98%E5%86%97%E4%BD%99%E9%98%B5%E5%88%97%EF%BC%88RAID%EF%BC%89%E6%A6%82%E5%BF%B5%E5%8F%8A%E9%85%8D%E7%BD%AE/" class="post-title-link" itemprop="url">独立磁盘冗余阵列（RAID）概念及配置</a>
+        </h2>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+              
+
+              <time title="创建时间：2023-08-24 13:26:19 / 修改时间：18:39:48" itemprop="dateCreated datePublished" datetime="2023-08-24T13:26:19+08:00">2023-08-24</time>
+            </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <h1 id="概念"><a href="#概念" class="headerlink" title="概念"></a>概念</h1><p>RAID（Redundant Array of Independent Disks，独立磁盘冗余阵列）是一种通过将多个独立的物理硬盘组合在一起来提供更高性能、容量和冗余性的数据存储技术。其原理是在多个硬盘之间实现数据的分布存储，并根据不同的RAID级别提供冗余备份，以增加数据的可靠性。</p>
+<h1 id="基本原理"><a href="#基本原理" class="headerlink" title="基本原理"></a>基本原理</h1><p>RAID技术通过合理地组合独立的硬盘和数据处理策略，提供了更高的性能和可靠性，使数据存储系统更适合服务器、存储设备和数据中心等环境。以下是RAID的一些基本原理：</p>
+<ol>
+<li><p><strong>条带化（Striping）</strong>：<br>RAID将数据分成一系列块，并将这些块依次存储在不同的物理磁盘上，从而实现数据的条带化存储。这使得数据可以并行地从多个磁盘读取或写入，从而提高了存取速度。</p>
+</li>
+<li><p><strong>冗余备份</strong>：<br>许多RAID级别提供了不同形式的冗余备份，以防止数据丢失。例如，RAID 1通过将相同的数据复制到多个磁盘上来提供冗余备份。RAID 5和RAID 6通过使用分布的校验数据来允许在一个磁盘损坏时恢复数据。</p>
+</li>
+<li><p><strong>RAID级别</strong>：<br>不同的RAID级别提供了不同的性能、容量和冗余特性。例如，RAID 0提供了高性能的条带化，但没有冗余备份。RAID 1提供了数据的完全冗余备份，但使用了更多的存储容量。RAID 5和RAID 6提供了一定程度的冗余备份和性能提升。</p>
+</li>
+<li><p><strong>性能提升</strong>：<br>由于数据可以并行读写，RAID可以提高数据访问速度。例如，RAID 0在一定程度上提高了读写性能，而条带化的RAID级别（如RAID 5和RAID 6）在某些情况下也可以提供更好的读写性能。</p>
+</li>
+<li><p><strong>可靠性提升</strong>：<br>多数RAID级别提供了冗余备份机制，以帮助防止数据丢失。RAID 1通过实时复制数据提供了最高级别的冗余。RAID 5和RAID 6通过校验数据来容忍一定数量的磁盘损坏，从而在磁盘故障时保护数据。</p>
+</li>
+<li><p><strong>磁盘故障处理</strong>：<br>当一个磁盘损坏时，RAID可以根据其配置继续工作。在某些RAID级别中，系统可以使用冗余数据进行自动修复，以恢复丢失的数据。</p>
+</li>
+</ol>
+<h1 id="选择RAID级别"><a href="#选择RAID级别" class="headerlink" title="选择RAID级别"></a>选择RAID级别</h1><p>选择适合的RAID级别取决于特定的应用需求，包括性能、数据冗余性、可用存储空间和成本等因素。不同的RAID级别在不同的情况下都有其优缺点。以下是常见的RAID级别，每个级别都有不同的优势和用途：</p>
+<ol>
+<li><p>RAID 0：条带化（Stripe）：</p>
+<ul>
+<li>优势：提高性能，数据被分散存储在多个磁盘上，可以并行读写。</li>
+<li>缺点：没有冗余备份，一个磁盘损坏将导致数据丢失。</li>
+<li>应用场景：IO速率要求高但数据安全性要求低的场合。<br><img src="/2023/08/24/%E7%8B%AC%E7%AB%8B%E7%A3%81%E7%9B%98%E5%86%97%E4%BD%99%E9%98%B5%E5%88%97%EF%BC%88RAID%EF%BC%89%E6%A6%82%E5%BF%B5%E5%8F%8A%E9%85%8D%E7%BD%AE/raid0.png"></li>
+</ul>
+</li>
+<li><p>RAID 1：镜像（Mirroring）：</p>
+<ul>
+<li>优势：提供数据冗余备份，一个磁盘损坏时数据仍然可用。</li>
+<li>缺点：需要两倍的存储容量，性能不如RAID 0。</li>
+<li>应用场景：财政、金融等容错要求高的场合。<br><img src="/2023/08/24/%E7%8B%AC%E7%AB%8B%E7%A3%81%E7%9B%98%E5%86%97%E4%BD%99%E9%98%B5%E5%88%97%EF%BC%88RAID%EF%BC%89%E6%A6%82%E5%BF%B5%E5%8F%8A%E9%85%8D%E7%BD%AE/raid1.png"></li>
+</ul>
+</li>
+</ol>
+<ol>
+<li><p>RAID 5：</p>
+<ul>
+<li>使用至少三个磁盘。</li>
+<li>优势：提供数据冗余备份和性能提升，较高的读写性能。</li>
+<li>缺点：写入性能较差，在某些情况下，如果多个磁盘同时损坏，数据可能会丢失。<br><img src="/2023/08/24/%E7%8B%AC%E7%AB%8B%E7%A3%81%E7%9B%98%E5%86%97%E4%BD%99%E9%98%B5%E5%88%97%EF%BC%88RAID%EF%BC%89%E6%A6%82%E5%BF%B5%E5%8F%8A%E9%85%8D%E7%BD%AE/raid5.png"></li>
+</ul>
+</li>
+<li><p>RAID 6：</p>
+<ul>
+<li>类似于RAID 5，但可以容忍两个磁盘的故障。</li>
+<li>使用至少四个磁盘。</li>
+<li>优势：更高的数据冗余性，可以同时容忍两个磁盘的损坏。</li>
+<li>缺点：相对于RAID 5，需要更多的计算资源。<br><img src="/2023/08/24/%E7%8B%AC%E7%AB%8B%E7%A3%81%E7%9B%98%E5%86%97%E4%BD%99%E9%98%B5%E5%88%97%EF%BC%88RAID%EF%BC%89%E6%A6%82%E5%BF%B5%E5%8F%8A%E9%85%8D%E7%BD%AE/raid6.png"></li>
+</ul>
+</li>
+<li><p>RAID 10（也称为RAID 1+0）：</p>
+<ul>
+<li>将RAID 1和RAID 0结合，至少需要四个磁盘。</li>
+<li>优势：结合了RAID 0和RAID 1的优点，提供了较高的性能和数据冗余性。</li>
+<li>缺点：需要大量的磁盘空间。<br><img src="/2023/08/24/%E7%8B%AC%E7%AB%8B%E7%A3%81%E7%9B%98%E5%86%97%E4%BD%99%E9%98%B5%E5%88%97%EF%BC%88RAID%EF%BC%89%E6%A6%82%E5%BF%B5%E5%8F%8A%E9%85%8D%E7%BD%AE/raid10.png"></li>
+</ul>
+</li>
+<li><p>RAID 50：</p>
+<ul>
+<li>将RAID 5的条带化结合起来，至少需要六个磁盘。</li>
+<li>优势：在RAID 5的基础上提供更高的性能。</li>
+<li>缺点：相对复杂，需要更多的磁盘和管理。<br><img src="/2023/08/24/%E7%8B%AC%E7%AB%8B%E7%A3%81%E7%9B%98%E5%86%97%E4%BD%99%E9%98%B5%E5%88%97%EF%BC%88RAID%EF%BC%89%E6%A6%82%E5%BF%B5%E5%8F%8A%E9%85%8D%E7%BD%AE/raid50.png"></li>
+</ul>
+</li>
+<li><p>RAID 60：</p>
+<ul>
+<li>将RAID 6的条带化结合起来，至少需要八个磁盘。</li>
+<li>优势：在RAID 6的基础上提供更高的性能。</li>
+<li>缺点：相对复杂，需要更多的磁盘和管理。<br><img src="/2023/08/24/%E7%8B%AC%E7%AB%8B%E7%A3%81%E7%9B%98%E5%86%97%E4%BD%99%E9%98%B5%E5%88%97%EF%BC%88RAID%EF%BC%89%E6%A6%82%E5%BF%B5%E5%8F%8A%E9%85%8D%E7%BD%AE/raid60.png"></li>
+</ul>
+</li>
+</ol>
+<h1 id="Linux服务器配置RAID"><a href="#Linux服务器配置RAID" class="headerlink" title="Linux服务器配置RAID"></a>Linux服务器配置RAID</h1><p>在Linux服务器上配置RAID通常涉及以下步骤。具体步骤可能会因Linux发行版和RAID控制器类型而有所不同。以下适用于一般性情况：</p>
+<ol>
+<li><p><strong>硬件RAID vs. 软件RAID</strong>：<br>首先，需要确定是使用服务器上的硬件RAID控制器还是使用Linux提供的软件RAID。硬件RAID通常需要在服务器启动时通过BIOS或UEFI界面进行配置。而软件RAID是通过Linux操作系统的软件工具进行配置。</p>
+</li>
+<li><p><strong>硬件RAID配置</strong>：</p>
+<ul>
+<li>启动服务器并进入RAID控制器的配置界面，通常通过按下特定的键（如Ctrl+C）来访问。</li>
+<li>在控制台界面中，可以创建RAID阵列，选择RAID级别（如RAID 0、RAID 1等），选择成员磁盘，配置冗余等。</li>
+<li>根据界面提示完成阵列配置，并保存设置。</li>
+</ul>
+</li>
+<li><p><strong>软件RAID配置</strong>：</p>
+<ul>
+<li>确保Linux发行版已经安装在至少一块磁盘上，然后插入其他要用于RAID的磁盘。</li>
+<li>使用命令行工具（如<code>mdadm</code>）进行软件RAID配置。e.g.：<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sudo mdadm --create &#x2F;dev&#x2F;md0 --level&#x3D;1 --raid-devices&#x3D;2 &#x2F;dev&#x2F;sdb1 &#x2F;dev&#x2F;sdc1</span><br></pre></td></tr></table></figure>
+上面创建了一个RAID 1阵列，使用<code>/dev/sdb1</code>和<code>/dev/sdc1</code>作为成员设备。</li>
+</ul>
+</li>
+<li><p><strong>创建文件系统</strong>：</p>
+<ul>
+<li>一旦RAID阵列创建完成，需要在其上创建文件系统，以便将数据存储在其中。常用的文件系统有Ext4、XFS等。</li>
+<li>例如，创建Ext4文件系统的命令：<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sudo mkfs.ext4 &#x2F;dev&#x2F;md0</span><br></pre></td></tr></table></figure></li>
+</ul>
+</li>
+<li><p><strong>挂载RAID阵列</strong>：</p>
+<ul>
+<li>创建一个目录来挂载RAID阵列上的文件系统：<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sudo mkdir &#x2F;mnt&#x2F;raid</span><br></pre></td></tr></table></figure></li>
+<li>将文件系统挂载到该目录：<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sudo mount &#x2F;dev&#x2F;md0 &#x2F;mnt&#x2F;raid</span><br></pre></td></tr></table></figure></li>
+</ul>
+</li>
+<li><p><strong>自动挂载设置</strong>：</p>
+<ul>
+<li>如果希望系统在每次启动时自动挂载RAID阵列，需要将挂载信息添加到<code>/etc/fstab</code>文件中。</li>
+</ul>
+</li>
+</ol>
+<p>上述具体步骤可能因使用的RAID级别、磁盘类型、Linux发行版以及服务器硬件而有所不同。在进行任何RAID配置之前，务必备份重要数据，并根据具体情况仔细阅读相关文档和指南。</p>
+<h1 id="使用arcconf配置raid"><a href="#使用arcconf配置raid" class="headerlink" title="使用arcconf配置raid"></a>使用arcconf配置raid</h1><p><code>arcconf</code> 是适用于Adaptec / Microsemi RAID 控制器的命令行工具，用于配置和管理RAID阵列。以下是使用 <code>arcconf</code> 进行RAID配置的一般步骤：</p>
+<p>注意，以下步骤可能因使用的RAID控制器型号、驱动程序版本和操作系统而有所不同。在进行配置之前，务必查阅RAID控制器的官方文档和手册。</p>
+<ol>
+<li><p><strong>打开终端</strong>：<br>登录进系统，并在终端或命令行界面中打开命令行工具。</p>
+</li>
+<li><p><strong>执行<code>arcconf</code>命令</strong>：<br>运行 <code>arcconf</code> 命令，通常需要使用管理员权限（例如，使用 <code>sudo</code>）。命令的基本结构如下：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sudo arcconf command option1 option2 ...</span><br></pre></td></tr></table></figure></li>
+<li><p><strong>列出已有阵列</strong>：<br>使用以下命令列出当前系统中已经配置的RAID阵列：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sudo arcconf getconfig 1</span><br></pre></td></tr></table></figure>
+
+<p>将显示当前的RAID配置，包括阵列、逻辑驱动器和物理磁盘的信息。</p>
+</li>
+<li><p><strong>创建新阵列</strong>：<br>使用以下命令创建新的RAID阵列。根据需求和控制器支持的RAID级别来替换相应参数。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sudo arcconf create &lt;Controller#&gt; logicaldrive [raidlevel] [drives...]</span><br></pre></td></tr></table></figure>
+
+<p>例如，创建一个RAID 1阵列，可以执行类似于以下的命令：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sudo arcconf create 1 logicaldrive RAID1 drives&#x3D;0 1</span><br></pre></td></tr></table></figure>
+
+<p>其中 <code>0</code> 和 <code>1</code> 是物理磁盘的编号。</p>
+</li>
+<li><p><strong>保存设置</strong>：<br>在配置完成后，可能需要确认配置并保存更改。根据提示，执行适当的操作以保存配置。</p>
+</li>
+<li><p><strong>重启服务器</strong>（可能需要）：<br>在某些情况下，RAID配置的更改可能需要重启服务器才能生效。如果系统要求重启，按照指示进行操作。</p>
+</li>
+</ol>
+<p>e.g. 在8块硬盘上创建raid6并设置热备盘：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">cd</span> /usr/Arcconf</span><br><span class="line"><span class="comment"># 设置控制卡工作模式（命令格式：arcconf setcontrollermode controller_id mode，3：设置为RAID模式）</span></span><br><span class="line">./arcconf setcontrollermode 1 3</span><br><span class="line"><span class="comment"># 查询控制卡的基本信息（命令格式：arcconf list controller_id）</span></span><br><span class="line">./arcconf list 1</span><br><span class="line"><span class="comment"># 创建raid（命令格式：arcconf create controller_id logicaldrive option size level physical_id physical_id......，size取值：设置为“MAX”，表示使用硬盘的所有容量创建虚拟磁盘）</span></span><br><span class="line">./arcconf create 1 logicaldrive stripsize 256 MAX 6 0 8 0 9 0 10 0 11 0 12 0 13 0 14 </span><br><span class="line"><span class="comment"># 设置热备盘（命令格式：arcconf setstate controller_id device physical_id hsp array array_id sparetype type，type取值：2 : Autoreplace）</span></span><br><span class="line">./arcconf setstate 1 device 0 15 hsp array 0 sparetype 2</span><br><span class="line"><span class="comment"># 查询所有Array的信息（命令格式：arcconf getconfig controller_id AR）</span></span><br><span class="line">./arcconf getconfig 1 ar</span><br><span class="line"><span class="comment"># 查询适配器信息（命令格式：arcconf getconfig controller_id AD）</span></span><br><span class="line">./arcconf getconfig 1 ad</span><br><span class="line"><span class="comment"># 查询所有LD的信息（命令格式：arcconf getconfig controller_id LD）</span></span><br><span class="line">./arcconf getconfig 1 ld</span><br><span class="line"><span class="comment"># 查询所有物理硬盘的信息（命令格式：arcconf getconfig controller_id PD）</span></span><br><span class="line">./arcconf getconfig 1 pd</span><br></pre></td></tr></table></figure>
+
+<p>在执行任何配置操作之前，需详细阅读控制器的文档，确保了解所需的参数、命令和步骤。错误的RAID配置可能导致数据丢失或系统不稳定。</p>
+<h1 id="参考"><a href="#参考" class="headerlink" title="参考"></a>参考</h1><ul>
+<li>《华为服务器 RAID控制卡 用户指南(x86) 》<a target="_blank" rel="noopener" href="https://support.huawei.com/enterprise/zh/doc/EDOC1000163568/d848a7a8">https://support.huawei.com/enterprise/zh/doc/EDOC1000163568/d848a7a8</a></li>
+</ul>
+
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="http://example.com/2023/07/27/%E8%BD%AF%E4%BB%B6%E9%9C%80%E6%B1%82%E6%8F%90%E8%A6%8101%EF%BC%9A%E8%BD%AF%E4%BB%B6%E9%9C%80%E6%B1%82%E7%9A%84%E6%9C%AC%E8%B4%A8/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="Tommy Hu">
+      <meta itemprop="description" content="写点东西">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="TommyHu的技术小馆">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/2023/07/27/%E8%BD%AF%E4%BB%B6%E9%9C%80%E6%B1%82%E6%8F%90%E8%A6%8101%EF%BC%9A%E8%BD%AF%E4%BB%B6%E9%9C%80%E6%B1%82%E7%9A%84%E6%9C%AC%E8%B4%A8/" class="post-title-link" itemprop="url">软件需求提要01：软件需求的本质</a>
+        </h2>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+
+              <time title="创建时间：2023-07-27 00:54:49" itemprop="dateCreated datePublished" datetime="2023-07-27T00:54:49+08:00">2023-07-27</time>
+            </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="far fa-calendar-check"></i>
+                </span>
+                <span class="post-meta-item-text">更新于</span>
+                <time title="修改时间：2023-07-29 02:40:20" itemprop="dateModified" datetime="2023-07-29T02:40:20+08:00">2023-07-29</time>
+              </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-folder"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/%E8%BD%AF%E4%BB%B6%E5%B7%A5%E7%A8%8B/" itemprop="url" rel="index"><span itemprop="name">软件工程</span></a>
+                </span>
+            </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <h1 id="软件需求的本质"><a href="#软件需求的本质" class="headerlink" title="软件需求的本质"></a>软件需求的本质</h1><p>软件开发项目中可能会遇到如下经历：</p>
+<ul>
+<li>从来没有清晰制定过项目的业务目标、愿景和范围。</li>
+<li>客户太忙，没有时间与分析师或开发人员共同处理需求。</li>
+<li>团队无法与用户代表直接互动，不理解他们的具体需要。</li>
+<li>客户认为所有的需求都很关键，因此没有对需求排定优先级。</li>
+<li>开发人员在写代码时遇到了模棱两可或者遗漏的信息，所以只能靠猜。</li>
+<li>开发人员与干系人沟通的重点集中于用户界面展示或者特性，并没有关注用户要使用软件完成的具体任务。</li>
+<li>需求从来没得到客户的认可。</li>
+<li>客户认可了某个发布或者迭代的需求，但事后又不断更改。</li>
+<li>不断接受客户的需求变更请求，项目范围随之扩大，由于没有增加资源或者删减功能，进度最后完全被打乱。</li>
+<li>有人提出了变更请求，但被忽略，没人知道特定变更请求的具体状态。</li>
+<li>客户提出特定的功能要求，而且开发人员也建好了，但就是没有人用过。</li>
+<li>在项目接近尾声时，虽然满足规范说明，却不满足客户或业务的目标。</li>
+</ul>
+<p>一些软件开发项目由于在初期阶段对需求工作不够重视，就匆忙开展后续工作，致使项目最终受到严重后果的惩罚，例如，用户对交付的产品不满意，由于不适用不得不返工，延期再交付。然后，返工导致的额外成本投入不仅会使开发组织的高管人员失望，开发人员也因要付出更多的劳动而怨声载道，最终导致开发组织的声誉受到影响。</p>
+<p>客观原因上：</p>
+<ul>
+<li>软件人员对项目提出的业务领域知识和相关技术并不熟悉。</li>
+<li>并且软件人员通常并不只是面对一个应用领域，而是常常在开发一个产品，初步熟悉一个领域之后，下一个开发任务又会面临另一个全新的领域。</li>
+<li>此外，当今各应用领域的技术和市场情况大多处于迅速发展和演变之中。</li>
+</ul>
+<p>主观原因上：</p>
+<ul>
+<li>软件开发人员未能在项目的需求阶段很好地和用户配合，充分吸收和听取用户的意见。</li>
+<li>未接受应用领域知识和技术的培训。</li>
+<li>…</li>
+</ul>
+<p>软件中的很多问题大多数来源于人们了解、记录、协商和修改产品需求的方法不当，问题包括：信息收集不正规；功能隐晦；对假设功能有理解上的分歧；需求指定不明确以及变更过程不正规。客户需求和管理客户需求过程中用户输入不足和有误是造成项目失败的罪魁祸首。</p>
+<p>软件项目中，所有干系人（客户、用户、业务分析人员和开发人员）的利益交界点主要集中在需求方面。处理得当，这种交接既可让客户满意，又能鼓舞开发人员。处理不当，则会引发误解和摩擦，最终降低产品质量和业务价值。需求是软件开发和项目管理活动的基础，因此所有干系人都应该致力于需求实践活动，这是打造一流产品的前提。</p>
+<p>需求的开发和管理贯穿于：</p>
+<ul>
+<li>开发新系统；</li>
+<li>改进、替换以及重构项目；</li>
+<li>融合商业现成品的（COTS）打包解决方案项目；</li>
+<li>遵循敏捷开发过程渐进式构建产品增量，也要理解每一个增量所涉及的需求。</li>
+</ul>
+<h2 id="软件需求的定义"><a href="#软件需求的定义" class="headerlink" title="软件需求的定义"></a>软件需求的定义</h2><ul>
+<li>说法1：“需求是任何能够驱动设计做出选择的东西”。<ul>
+<li>解读：开发需求的目的就是要做出合适的设计选项，最终满足客户需要。</li>
+</ul>
+</li>
+<li>说法2：“需求是产品所必备的属性，目的是向干系人提供价值”。<ul>
+<li>解读：没错，但不准确。</li>
+</ul>
+</li>
+<li>说法3：“需求是对我们应当执行的任务的规范说明。它描述系统的行为特性或属性，可以是一种对系统开发进程的约束。”<ul>
+<li>解读：认为“需求”是多种不同类型的信息的统称，涵盖来自客户视角的外部系统行为以及来自开发人员视角的一些内部特征，它们包含系统在特定条件下的行为和属性，使目标用户觉得系统易于甚至乐于上手。不要妄想项目中的所有干系人都能对需求达成统一的认识。提前确立定义，以便大家能够达成共识。</li>
+</ul>
+</li>
+</ul>
+<h3 id="需求的优先级"><a href="#需求的优先级" class="headerlink" title="需求的优先级"></a>需求的优先级</h3><p>软件需求包含一个时间维度，可能是描述目前系统性能的现在时，或者他们可能是近期（高优先级）、中期（中等优先级）或者想象中（低优先级）的未来。甚至可能是过去时，也就是那些曾经被人指定但后来又被舍弃的需要。我们没必要浪费时间争论某个东西是否是需求，即使知道自己会为了某个合理的业务原因而永远不执行它。需求就是需求。</p>
+<h2 id="需求的层次和种类"><a href="#需求的层次和种类" class="headerlink" title="需求的层次和种类"></a>需求的层次和种类</h2><table>
+  <tr>
+    <td colspan="2" style="text-align:center">需求领域常用术语</td>
+  </tr>
+  <tr>
+    <td>术语</td>
+    <td>定义</td>
+  </tr>
+  <tr>
+    <td>业务需求</td>
+    <td>开发产品的组织或者获取产品的客户所需的高层次业务目标</td>
+  </tr>
+  <tr>
+    <td>业务规则</td>
+    <td>策略、纲领、标准或者制度，能够定义或者约束某些方面的业务。虽然本身并不是软件需求，但它却是一些类型的软件需求的鼻祖</td>
+  </tr>
+  <tr>
+    <td>约束</td>
+    <td>对开发人员在产品设计和构建上的限制条件</td>
+  </tr>
+  <tr>
+    <td>外部界面需求</td>
+    <td>对软件系统和用户、其他软件系统和硬件设备间的关联进行说明</td>
+  </tr>
+  <tr>
+    <td>特性</td>
+    <td>单个或者多个用户提供价值的、有逻辑关系的系统性能。可以通过一个功能需求集合进行描述</td>
+  </tr>
+  <tr>
+    <td>功能需求</td>
+    <td>描述系统在特定条件下展现的行为</td>
+  </tr>
+  <tr>
+    <td>非功能需求</td>
+    <td>描述系统必须展现的属性或者特性，或者必须遵守的约束</td>
+  </tr>
+  <tr>
+    <td>质量属性</td>
+    <td>一种非功能需求，描述的是服务或者一个产品的性能特征</td>
+  </tr>
+  <tr>
+    <td>系统需求</td>
+    <td>包含多个子系统的产品的顶层需求，子系统可以是软件，也可以是软硬件</td>
+  </tr>
+  <tr>
+    <td>用户需求</td>
+    <td>特定用户群必须能够用系统所完成的目标或任务，或者是用户期望有的产品属性</td>
+  </tr>
+</table>
+
+<p>软件需求有三种不同的层次：业务需求、用户需求和功能需求。每个系统都包含某种类别的非功能需求。不同种类的需求如下图中的模型所示。虽然“一切模型都是错误的，但有些还是有作用的。”这个模型也许并不全面，但提供的方案非常实用，可以帮助组织需求方面的知识。<br><img src="/2023/07/27/%E8%BD%AF%E4%BB%B6%E9%9C%80%E6%B1%82%E6%8F%90%E8%A6%8101%EF%BC%9A%E8%BD%AF%E4%BB%B6%E9%9C%80%E6%B1%82%E7%9A%84%E6%9C%AC%E8%B4%A8/1-1.png"></p>
+<table>
+<thead>
+<tr>
+<th align="left">需求层次</th>
+<th align="left">解读</th>
+<th align="left">样例</th>
+<th align="left">记录位置</th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="left">业务需求</td>
+<td align="left">组织为什么要执行系统（组织希望获得的业务收益）。关注点在于组织或者提出系统要求的客户有哪些业务目标。</td>
+<td align="left">例如，航空公司打算将机场柜台工作人员成本降低25%，常想到的是建一个自助服务终端供乘客自行检票，项目出资方、目标客户、实际用户的管理层、市场部门或者产品规划部门一般都会有业务需求，</td>
+<td align="left">记录在愿景或者范围文件之中。还有一些战略性指导文件有时也会用于此目标，包括项目图标、业务实例以及市场（或者营销）需求文件。</td>
+</tr>
+<tr>
+<td align="left">用户需求</td>
+<td align="left">描述了用户使用产品必须完成的目标或者任务，并且这个产品要能够为人提供价值。由实际用户代表提供，表达的是用户通过系统来完成哪些具体工作。</td>
+<td align="left">乘客的用户需求：“我想办理登机手续以便能够登机”。（大多数项目都有若干个用户类别和其他干系人，我们还必须获取他们的需求。要在这个层级集中注意力，理解实际用户要用这个产品完成哪些具体目标）</td>
+<td align="left"></td>
+</tr>
+<tr>
+<td align="left">功能需求</td>
+<td align="left">主要描述开发人员需要实现的功能以便用户能够完成自己的任务（用户需求）</td>
+<td align="left">常将功能需求记录为传统意义上的“应当”句式：“乘客应当能够随时打印自己已经办好登机手续的所有航段的登机牌”或者“如果乘客信息没有指定作为偏好，航班预定系统就应当为他分配”</td>
+<td align="left">记录在软件需求规范说明（Software Requirements specification, SRS（已为行业标准术语，ISO/IEC/IEEE 2011））之中，尽可能详尽地描述人们对软件系统的预期行为。<strong>SRS可以是一个报告，由存储在需求管理工具中的信息生成。</strong></td>
+</tr>
+</tbody></table>
+<p>其他：</p>
+<table>
+<thead>
+<tr>
+<th align="left">术语</th>
+<th align="left">解读</th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="left">系统需求</td>
+<td align="left">描述了人们对某个产品的需求，而这个产品由多个组件或者系统子集组成（ISO/IEC/IEEE 2011）。所有软件或软件、硬件系统子集都可以算是系统。甚至人和过程都可以算是系统。</td>
+</tr>
+<tr>
+<td align="left">业务规则</td>
+<td align="left">包括公司政策、政府法规、工业标准以及计算算法。业务规则本身并不是软件需求，因为它的存在已经超出了任何特定软件应用的范围。却又经常决定着系统为了切合相关规则而必须包含哪些功能，有时又引申出具体的质量特性，这些特性又以功能的方式由开发人员实现，因此，特定的功能需求可以追溯到具体的业务规则。</td>
+</tr>
+</tbody></table>
+<p>SRS还包含某些类别的非功能需求：<br>| 术语 | 解读 |<br>| :— | :— |<br>|质量属性|从不同角度描述产品特征，例如性能、安全性、易用性和可移植性，这些对于用户、开发人员和维护人员来说都非常重要|<br>|系统与外部世界的接口|包括与其他软件系统、硬件组件、用户以及沟通界面的关联|</p>
+<h3 id="非功能需求到底是什么？"><a href="#非功能需求到底是什么？" class="headerlink" title="非功能需求到底是什么？"></a>非功能需求到底是什么？</h3><ul>
+<li>功能需求描述的是系统在不同条件下能够被用户观察到的行为。</li>
+<li>功能之外的需求强调的不是系统要做什么而在于系统做得有多棒，包括易用性、安全性和性能。设计和实现约束也是非功能需求，以及外部接口。<ul>
+<li>还有一些其他的非功能需求，描述的是系统运行环境，例如平台、可移植性、兼容性和约束。很多产品还受监管和发行许可的影响，甚至还要考虑到产品的地域性需求，例如用户的文化、语言、法律、货币、专有名词、拼写和其他特征。业务分析师仍然可以从非功能需求中获得大量功能，以确保系统的所有行为和属性符合用户的预期。</li>
+<li>非功能需求也要保证被纳入需求获取和分析活动，因为交付的产品虽然囊括所有预想的功能，但用户还是不喜欢，因为它不符合人们对其产品质量（通常未明确表达）的预期。</li>
+</ul>
+</li>
+</ul>
+<p>一个特性包含一个或者多个逻辑上有关联的系统功能，由一组功能性需求来共同描述。例如，网页浏览器的书签、拼写检查、为运动器械设定定制锻炼程序、杀毒软件中病毒库的自动升级，都是典型的特性。特性包含多种用户需求，每种需求都表示特定的功能需求必须实现，以便用户能完成用户需求中所描述的任务。下图为一个特性树，也可以说是一个分析模板，展示的是特性如何层层分解为更小的特性组，这些小特性与具体的用户需求关联，最终引出功能需求。<br><img src="/2023/07/27/%E8%BD%AF%E4%BB%B6%E9%9C%80%E6%B1%82%E6%8F%90%E8%A6%8101%EF%BC%9A%E8%BD%AF%E4%BB%B6%E9%9C%80%E6%B1%82%E7%9A%84%E6%9C%AC%E8%B4%A8/1-2.png"></p>
+<p>例如，假设在开发某个文本编辑程序的新版本。“在6个月内将非美国地区的销量增加25%”可以算是一种业务需求，市场部发现参与竞争的产品只有英语拼写检查器，因此决定新版本要包括一个多语种拼写检查特性，对应的用户需求可能包含诸如“为拼写检查器选择语言”“发现拼写错误”和“将词添加到字典”这样的任务。拼写检查器有很多独立的功能需求，涉及的操作包括高亮拼写错误的单词、自动纠错、显示建议替代选项、用正确的单词整体代替拼写错误的单词。易用性需求明确指定如何使用特定语言和字符集来定位软件的使用区域。</p>
+<h2 id="处理三种层次的需求"><a href="#处理三种层次的需求" class="headerlink" title="处理三种层次的需求"></a>处理三种层次的需求</h2><p>下图展示了不同的干系人如何参与获取三种层次的需求。<br><img src="/2023/07/27/%E8%BD%AF%E4%BB%B6%E9%9C%80%E6%B1%82%E6%8F%90%E8%A6%8101%EF%BC%9A%E8%BD%AF%E4%BB%B6%E9%9C%80%E6%B1%82%E7%9A%84%E6%9C%AC%E8%B4%A8/1-3.png"></p>
+<p>还要认识到以共享方式记录关键需求信息的重要性，而不应只是用传统的口述形式。记录下客户的需求，免得用户代表被不同的对接人反复询问。三种主要的需求交付物：愿景和范围文档、用户需求文档和软件需求规范说明。无需独立创建，特别对于小型项目，有必要将这类信息融合在一起。但还要注意这三种交付物包含着不同的信息，要在项目的不同点进行开发，开发人员也可能不同，目的和目标受众也不相同。</p>
+<p>需求变更，做“影响分析”来保证合适的人（项目发起方、项目经理或产品负责人）做出可靠的业务决策，确定哪些变更可接受，解决时间、资源或特性权衡所关联的成本。</p>
+
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
     <link itemprop="mainEntityOfPage" href="http://example.com/2023/04/25/%E6%95%B0%E6%8D%AE%E4%B8%AD%E5%8F%B0%E6%A0%B8%E5%BF%83%E6%8A%80%E6%9C%AF/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -181,10 +614,16 @@
                 <i class="far fa-calendar"></i>
               </span>
               <span class="post-meta-item-text">发表于</span>
-              
 
-              <time title="创建时间：2023-04-25 02:07:50 / 修改时间：02:12:21" itemprop="dateCreated datePublished" datetime="2023-04-25T02:07:50+08:00">2023-04-25</time>
+              <time title="创建时间：2023-04-25 02:07:50" itemprop="dateCreated datePublished" datetime="2023-04-25T02:07:50+08:00">2023-04-25</time>
             </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="far fa-calendar-check"></i>
+                </span>
+                <span class="post-meta-item-text">更新于</span>
+                <time title="修改时间：2023-04-26 23:12:09" itemprop="dateModified" datetime="2023-04-26T23:12:09+08:00">2023-04-26</time>
+              </span>
             <span class="post-meta-item">
               <span class="post-meta-item-icon">
                 <i class="far fa-folder"></i>
@@ -793,89 +1232,11 @@
   
   
 
-      
-  
-  
-  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
-    <link itemprop="mainEntityOfPage" href="http://example.com/2021/04/22/%E9%80%9A%E8%BF%87GithubPages%E5%92%8C%E9%9D%99%E6%80%81%E7%AB%99%E7%82%B9%E7%94%9F%E6%88%90%E6%A1%86%E6%9E%B6Hexo%E6%90%AD%E5%BB%BA%E5%8D%9A%E5%AE%A2/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/avatar.gif">
-      <meta itemprop="name" content="Tommy Hu">
-      <meta itemprop="description" content="写点东西">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="TommyHu的技术小馆">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          
-            <a href="/2021/04/22/%E9%80%9A%E8%BF%87GithubPages%E5%92%8C%E9%9D%99%E6%80%81%E7%AB%99%E7%82%B9%E7%94%9F%E6%88%90%E6%A1%86%E6%9E%B6Hexo%E6%90%AD%E5%BB%BA%E5%8D%9A%E5%AE%A2/" class="post-title-link" itemprop="url">通过GithubPages和静态站点生成框架Hexo搭建博客</a>
-        </h2>
-
-        <div class="post-meta">
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-calendar"></i>
-              </span>
-              <span class="post-meta-item-text">发表于</span>
-
-              <time title="创建时间：2021-04-22 22:27:39" itemprop="dateCreated datePublished" datetime="2021-04-22T22:27:39+08:00">2021-04-22</time>
-            </span>
-              <span class="post-meta-item">
-                <span class="post-meta-item-icon">
-                  <i class="far fa-calendar-check"></i>
-                </span>
-                <span class="post-meta-item-text">更新于</span>
-                <time title="修改时间：2021-04-25 15:15:57" itemprop="dateModified" datetime="2021-04-25T15:15:57+08:00">2021-04-25</time>
-              </span>
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-folder"></i>
-              </span>
-              <span class="post-meta-item-text">分类于</span>
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/%E5%8D%9A%E5%AE%A2/" itemprop="url" rel="index"><span itemprop="name">博客</span></a>
-                </span>
-            </span>
-
-          
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-          <h1 id="概念简介"><a href="#概念简介" class="headerlink" title="概念简介"></a>概念简介</h1><h2 id="什么是Github-Pages？"><a href="#什么是Github-Pages？" class="headerlink" title="什么是Github Pages？"></a>什么是Github Pages？</h2><p>“GitHub Pages是GitHub提供的一个网页寄存服务，于2008年推出。可以用于存放静态网页，包括博客、项目文档甚至整本书。Jekyll软件可以用于将文档转换成静态网页，该软件提供了将网页上传到GitHub Pages的功能。一般GitHub Pages的网站使用github.io的子域名，但是用户也可以使用第三方域名。” <p align="right">——维基百科</p></p>
-          <!--noindex-->
-            <div class="post-button">
-              <a class="btn" href="/2021/04/22/%E9%80%9A%E8%BF%87GithubPages%E5%92%8C%E9%9D%99%E6%80%81%E7%AB%99%E7%82%B9%E7%94%9F%E6%88%90%E6%A1%86%E6%9E%B6Hexo%E6%90%AD%E5%BB%BA%E5%8D%9A%E5%AE%A2/#more" rel="contents">
-                阅读全文 &raquo;
-              </a>
-            </div>
-          <!--/noindex-->
-        
-      
-    </div>
-
-    
-    
-    
-      <footer class="post-footer">
-        <div class="post-eof"></div>
-      </footer>
-  </article>
-  
-  
-  
-
 
   
+  <nav class="pagination">
+    <span class="page-number current">1</span><a class="page-number" href="/page/2/">2</a><a class="extend next" rel="next" href="/page/2/"><i class="fa fa-angle-right" aria-label="下一页"></i></a>
+  </nav>
 
 
 
@@ -940,20 +1301,20 @@
       <div class="site-state-item site-state-posts">
           <a href="/archives/">
         
-          <span class="site-state-item-count">9</span>
+          <span class="site-state-item-count">11</span>
           <span class="site-state-item-name">日志</span>
         </a>
       </div>
       <div class="site-state-item site-state-categories">
             <a href="/categories/">
           
-        <span class="site-state-item-count">4</span>
+        <span class="site-state-item-count">5</span>
         <span class="site-state-item-name">分类</span></a>
       </div>
       <div class="site-state-item site-state-tags">
             <a href="/tags/">
           
-        <span class="site-state-item-count">9</span>
+        <span class="site-state-item-count">10</span>
         <span class="site-state-item-name">标签</span></a>
       </div>
   </nav>
